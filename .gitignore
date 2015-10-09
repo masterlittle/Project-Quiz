@@ -5,3 +5,11 @@
 .DS_Store
 /build
 /captures
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+>>>>>>> ba8a6ce7c06d8908358d4ca1bd145f8b78257c76
