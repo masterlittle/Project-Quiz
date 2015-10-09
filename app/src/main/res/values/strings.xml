@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_activity_team_details">ActivityTeamDetails</string>
+    <string name="title_activity_activity_add_student_records">ActivityAddStudentRecords</string>
+    <string name="Next">Next</string>
+    <string name="enterName">Enter Name</string>
+    <string name="enterYear">Enter Year</string>
+    <string name="studentDetails">Enter Student Details</string>
+    <string name="addStudent">Add Student</string>
+    <string name="title_activity_activity_select_teams">ActivitySelectTeams</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_activity_home_screen">ActivityHomeScreen</string>
+    <string name="highGuys">High Guys</string>
+    <string name="createTeams">Create a Team</string>
+    <string name="displatScores">Display Scores</string>
+    <string name="openDrawer">Open Drawer</string>
+    <string name="closeDrawer">Close Drawer</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_next">Next</string>
+    <string name="Team">Team</string>
+</resources>

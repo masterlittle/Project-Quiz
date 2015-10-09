@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e2e4fe"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/card_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent" />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <LinearLayout
+            app:layout_scrollFlags="scroll"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+       <LinearLayout
+           android:background="@color/colorPrimaryLight"
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="40dp">
+           <TextView
+               android:id="@+id/plus_half"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="+0.5"
+               android:layout_width="0dp"
+               android:layout_height="match_parent" />
+           <TextView
+               android:id="@+id/plus_one"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="+1"
+               android:layout_width="0dp"
+               android:layout_height="match_parent" />
+           <TextView
+               android:id="@+id/plus_two"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="+2"
+               android:layout_width="0dp"
+               android:layout_height="match_parent" />
+           <TextView
+               android:id="@+id/plus_five"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="+5"
+               android:layout_width="0dp"
+               android:layout_height="match_parent" />
+           <TextView
+               android:id="@+id/plus_ten"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="+10"
+               android:layout_width="0dp"
+               android:layout_height="match_parent" />
+       </LinearLayout>
+        <LinearLayout
+
+            android:background="#FCA258"
+            app:layout_scrollFlags="scroll"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/minus_half"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="-0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/minus_one"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="-1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/minus_two"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="-2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/minus_five"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="-5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/minus_ten"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="-10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/card_background"
+        app:layout_anchor="@id/card_listView"
+        app:layout_anchorGravity="bottom|right|end"/>
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_anchor="@id/appbar"-->
+        <!--app:layout_anchorGravity="bottom"-->
+        <!--app:borderWidth="0dp"-->
+        <!--android:layout_margin="3dp"-->
+        <!--android:src="@color/color_red" />-->
+</android.support.design.widget.CoordinatorLayout>

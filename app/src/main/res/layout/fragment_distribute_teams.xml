@@ -1,0 +1,29 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/padding_custom_10dp"
+    android:paddingBottom="@dimen/padding_custom_10dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.project.quiz.fragments.FragmentDistributeTeams">
+
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:paddingLeft="@dimen/padding_custom_10dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/Team" />
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:id="@+id/team_number"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/Team" />
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:text="@string/hello_blank_fragment" />
+
+</LinearLayout>

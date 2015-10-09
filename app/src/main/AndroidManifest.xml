@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.project.quiz" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <provider
+            android:name=".contentprovider.DataContentProvider"
+            android:authorities="com.project.quiz.contentprovider"
+            android:exported="false" >
+        </provider>
+
+        <activity
+            android:name=".activities.ActivityUpdateScore"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".activities.ActivityTeamDetails"
+            android:label="@string/title_activity_activity_team_details" >
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activities.ActivityAddStudentRecords"
+            android:label="@string/title_activity_activity_add_student_records" >
+        </activity>
+        <activity
+            android:name=".activities.ActivitySelectTeams"
+            android:label="@string/title_activity_activity_select_teams" >
+        </activity>
+        <activity
+            android:name=".activities.ActivityHomeScreen"
+            android:label="@string/title_activity_activity_home_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
