@@ -18,20 +18,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Team Details"/>
+        android:text="Quiz Tag"/>
 
    <android.support.design.widget.TextInputLayout
        android:textColorHint="@color/colorPrimaryLight"
        android:layout_marginBottom="@dimen/activity_vertical_margin"
        android:layout_gravity="center"
-       android:id="@+id/team_num_layout"
+       android:id="@+id/quiz_tag_layout"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <EditText
            android:textColor="@color/colorPrimaryLight"
            android:inputType="number"
-           android:id="@+id/edit_team_num"
-           android:hint="Enter team number"
+           android:id="@+id/edit_quiz_tag"
+           android:hint="Enter quiz tag"
            android:layout_width="match_parent"
            android:layout_height="wrap_content" />
    </android.support.design.widget.TextInputLayout>

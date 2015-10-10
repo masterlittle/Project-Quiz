@@ -24,4 +24,7 @@
     <string name="button_yes">Yes</string>
     <string name="button_next">Next</string>
     <string name="Team">Team</string>
+    <string name="displayScores">Display Scores</string>
+    <string name="finish">Finish</string>
+    <string name="enterScore">Enter Score</string>
 </resources>

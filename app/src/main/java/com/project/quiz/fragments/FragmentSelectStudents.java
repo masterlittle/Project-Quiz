@@ -186,13 +186,23 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
 
     public void doWork() {
         int i =0;
+        int s;
         while(i != selectedStudentList.size()) {
+            if(!selectedStudents.containsKey(selectedStudentList.get(i))) {
+                s =1;
+            }
+            else{
+                s = selectedStudents.get(selectedStudentList.get(i));
+            }
             ContentValues values = new ContentValues();
-            values.put(StudentRecords.STUDENT_SELECTED, selectedStudents.get(selectedStudentList.get(i)));
+
+            values.put(StudentRecords.STUDENT_SELECTED, s);
             getContext().getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI, values, StudentRecords.STUDENT_ID + "=?", new String[]{selectedStudentList.get(i)});
             i++;
         }
+        selectedStudents.clear();
         getFragmentLoader().loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_DISTRIBUTE_STUDENTS,null);
+
     }
 }
 

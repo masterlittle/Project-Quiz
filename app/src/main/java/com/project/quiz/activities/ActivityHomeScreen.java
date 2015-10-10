@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.project.quiz.R;
+import com.project.quiz.fragments.FragmentDisplayScore;
 import com.project.quiz.fragments.FragmentHomeScreen;
 import com.project.quiz.interfaces.ChangeFragment;
 import com.project.quiz.utils.CommonLibs;
@@ -28,7 +29,8 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
     Toolbar toolbar;
     @Bind((R.id.navigation))
     NavigationView navigationView;
-    @Bind(R.id.drawer) DrawerLayout drawerLayout;
+    @Bind(R.id.drawer)
+    DrawerLayout drawerLayout;
     private int mNavItemId;
 
     @Override
@@ -102,7 +104,8 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
             startActivity(new Intent(this, ActivitySelectTeams.class));
         }
         if(itemId == R.id.displayScores){
-            startActivity(new Intent(this, ActivityTeamDetails.class));
+//            startActivity(new Intent(this, ActivityTeamDetails.class));
+            loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_STUDENTS, null);
         }
     }
 
@@ -130,6 +133,11 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
             FragmentHomeScreen frag = new FragmentHomeScreen();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frame, frag, "FragmentHomeScreen").commit();
+        }
+        else if(id == CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_STUDENTS){
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            FragmentDisplayScore displayScore = new FragmentDisplayScore();
+            fragmentTransaction.replace(R.id.frame, displayScore, "Display Score").addToBackStack("Display Score").commit();
         }
     }
 }

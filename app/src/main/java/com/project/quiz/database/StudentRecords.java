@@ -15,6 +15,7 @@ public class StudentRecords {
     public static final String STUDENT_ID = "student_id";
     public static final String STUDENT_SCORE = "student_score";
     public static final String STUDENT_YEAR = "student_year";
+    public static final String TEAM_NUMBER = "team_number";
     public static final String STUDENT_SELECTED = "student_selected";
 
     // Database creation SQL statement
@@ -24,6 +25,7 @@ public class StudentRecords {
             + COLUMN_ID + " integer primary key autoincrement, "
             + STUDENT_NAME + " text not null unique, "
             + STUDENT_ID + " text not null unique, "
+            + TEAM_NUMBER + " int default -1, "
             + STUDENT_SCORE + " float default 0, "
             + STUDENT_YEAR + " int not null, "
             + STUDENT_SELECTED + " boolean not null "

@@ -21,19 +21,22 @@ import com.project.quiz.utils.CommonLibs;
  */
 public class DataContentProvider extends ContentProvider {
 
+
     // database
     private DataDatabaseHelper database;
 
     // used for the UriMatcher
     private static final int TEXT_STORE_DATA = 10;
-    private static final int TEXT_STORE_STUDENTS= 40;
+    private static final int TEXT_STORE_STUDENTS = 40;
     private static final int TEXT_DATA_DELETE = 20;
     private static final int TEXT_DATA_BULK_INSERT = 30;
+    private static final int TEXT_UPDATE_SCORE_STUDENTS = 50;
 
     private static final String AUTHORITY = "com.project.quiz.contentprovider";
 
     private static final String BASE_PATH_STORE = "tablePoints";
     private static final String BASE_PATH_STORE_STUDENTS = "storeStudents";
+    private static final String BASE_PATH_UPDATE_SCORE_STUDENTS = "updateScoreStudents";
     private static final String BASE_PATH_DELETE = "tableDelete";
     private static final String BASE_PATH_BULK_INSERT = "bulkInsert";
 
@@ -45,6 +48,9 @@ public class DataContentProvider extends ContentProvider {
 
     public static final Uri CONTENT_STORE_STUDENTS_URI = Uri.parse("content://" + AUTHORITY
             + "/" + BASE_PATH_STORE_STUDENTS);
+
+    public static final Uri CONTENT_UPDATE_SCORE_STUDENTS_URI = Uri.parse("content://" + AUTHORITY
+            + "/" + BASE_PATH_UPDATE_SCORE_STUDENTS);
 
     public static final Uri CONTENT_BULK_INSERT_URI = Uri.parse("content://" + AUTHORITY
             + "/" + BASE_PATH_BULK_INSERT);
@@ -60,6 +66,7 @@ public class DataContentProvider extends ContentProvider {
     static {
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_STORE, TEXT_STORE_DATA);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_STORE_STUDENTS, TEXT_STORE_STUDENTS);
+        sURIMatcher.addURI(AUTHORITY, BASE_PATH_UPDATE_SCORE_STUDENTS, TEXT_UPDATE_SCORE_STUDENTS);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_BULK_INSERT, TEXT_DATA_BULK_INSERT);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_DELETE, TEXT_DATA_DELETE);
     }
@@ -145,6 +152,11 @@ public class DataContentProvider extends ContentProvider {
                 rowsDeleted = sqlDB.delete(StorePointsTable.TABLE_DATA_TEXT, selection,
                         selectionArgs);
                 break;
+            case TEXT_STORE_STUDENTS:
+                rowsDeleted = sqlDB.delete(StudentRecords.TABLE_DATA_TEXT, selection,
+                        selectionArgs);
+                getContext().getContentResolver().notifyChange(uri, null);
+                break;
             case TEXT_DATA_DELETE:
 //                    rowsDeleted = sqlDB.delete(StoreDataTable.TABLE_DATA_TEXT, null, null);
                 String query = "DROP TABLE IF EXISTS " + StorePointsTable.TABLE_DATA_TEXT;
@@ -178,6 +190,10 @@ public class DataContentProvider extends ContentProvider {
                         values,
                         selection,
                         selectionArgs);
+                break;
+            case TEXT_UPDATE_SCORE_STUDENTS:
+                rowsUpdated = 0;
+                sqlDB.execSQL("UPDATE " + StudentRecords.TABLE_DATA_TEXT + " SET " + StudentRecords.STUDENT_SCORE + " = " + StudentRecords.STUDENT_SCORE + values.get(StudentRecords.STUDENT_SCORE) + selection, selectionArgs);
                 break;
 
             default:

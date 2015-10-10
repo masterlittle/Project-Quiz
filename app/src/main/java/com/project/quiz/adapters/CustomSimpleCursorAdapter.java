@@ -40,8 +40,10 @@ public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
             holder = new ViewHolder(view);
             view.setTag(holder);
         }
+
         holder = (ViewHolder)view.getTag();
         String student_id = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_ID));
+        FragmentSelectStudents.selectedStudents.put(holder.studentId.getText().toString(), 1);
         FragmentSelectStudents.selectedStudentList.add(student_id);
         holder.studentId.setText(student_id);
         holder.studentName.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_NAME)));

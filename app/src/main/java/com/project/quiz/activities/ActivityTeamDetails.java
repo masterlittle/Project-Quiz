@@ -2,6 +2,7 @@ package com.project.quiz.activities;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,19 +20,20 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ActivityTeamDetails extends AppCompatActivity {
-    @Bind(R.id.edit_team_num)
-    EditText editTeamNumber;
-    @Bind(R.id.team_num_layout)
-    TextInputLayout teamNumberLayout;
+    @Bind(R.id.edit_quiz_tag)
+    EditText editQuizTag;
+    @Bind(R.id.quiz_tag_layout)
+    TextInputLayout quizTagLayout;
     @OnClick(R.id.button_next)
     public void onClick(){
         emptyDatabase();
-        if(editTeamNumber.getText().length() <=0){
-            teamNumberLayout.setError("Please enter the team number");
+        if(editQuizTag.getText().length() <=0){
+            quizTagLayout.setError("Please enter the quiz tag");
         }else {
-            insertTeams(editTeamNumber.getText().toString());
+            SharedPreferences preferences = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+            insertTeams(preferences.getString(CommonLibs.SharedPrefsKeys.TEAM_NUMBER, "0"));
             Intent intent = new Intent(this, ActivityUpdateScore.class);
-            intent.putExtra(CommonLibs.TeamDetails.TEAM_NUMBER, editTeamNumber.getText().toString());
+//            intent.putExtra(CommonLibs.TeamDetails.TEAM_NUMBER, editTeamNumber.getText().toString());
             startActivity(intent);
             finish();
         }

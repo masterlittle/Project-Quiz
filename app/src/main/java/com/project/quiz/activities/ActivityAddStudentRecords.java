@@ -12,15 +12,21 @@ import android.view.MenuItem;
 
 import com.project.quiz.R;
 import com.project.quiz.adapters.TabPagerAdapter;
+import com.project.quiz.contentprovider.DataContentProvider;
+import com.project.quiz.customClasses.CustomDialogClass;
+import com.project.quiz.customClasses.CustomDialogTextClass;
 import com.project.quiz.customClasses.SlidingTabLayout;
+import com.project.quiz.database.StudentRecords;
 import com.project.quiz.interfaces.ChangeFragment;
+import com.project.quiz.interfaces.DialogBoxListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActivityAddStudentRecords extends AppCompatActivity implements ChangeFragment {
+public class ActivityAddStudentRecords extends AppCompatActivity implements ChangeFragment, DialogBoxListener {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    private String info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,7 @@ public class ActivityAddStudentRecords extends AppCompatActivity implements Chan
 
         toolbar.setTitle("Student Section");
         setSupportActionBar(toolbar);
-        String[] tabs = new String[]{"Add student", "Display students"};
+        String[] tabs = new String[]{"Add student", "Edit students"};
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         PagerAdapter mAdapter = new TabPagerAdapter(getSupportFragmentManager(), tabs, tabs.length);
@@ -45,12 +51,12 @@ public class ActivityAddStudentRecords extends AppCompatActivity implements Chan
 
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.colorPrimary);    //define any color in xml resources and set it here, I have used white
+                return getResources().getColor(R.color.orange_e96125);    //define any color in xml resources and set it here, I have used white
             }
 
             @Override
             public int getDividerColor(int position) {
-                return getResources().getColor(R.color.colorPrimary);
+                return getResources().getColor(R.color.orange_e96125);
             }
         });
     }
@@ -79,6 +85,23 @@ public class ActivityAddStudentRecords extends AppCompatActivity implements Chan
 
     @Override
     public void loadFragment(int id, Bundle bundle) {
+
+    }
+
+    @Override
+    public void showEditDialog(int position, String info) {
+        this.info= info;
+        CustomDialogTextClass dialog = new CustomDialogTextClass(this, "Remove Student?", "Are you sure you want to remove this student?");
+        dialog.show();
+    }
+
+    @Override
+    public void onDialogPositivePressed() {
+        getContentResolver().delete(DataContentProvider.CONTENT_STORE_STUDENTS_URI, StudentRecords.STUDENT_ID + "=?", new String[]{info});
+    }
+
+    @Override
+    public void onDialogCancelPressed() {
 
     }
 }

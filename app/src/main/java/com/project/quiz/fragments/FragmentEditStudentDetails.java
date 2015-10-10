@@ -6,16 +6,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.project.quiz.R;
+import com.project.quiz.adapters.CustomStudentEditCursorAdapter;
 import com.project.quiz.contentprovider.DataContentProvider;
 import com.project.quiz.database.StudentRecords;
 
@@ -25,12 +29,13 @@ import com.project.quiz.database.StudentRecords;
  * Large screen devices (such as tablets) are supported by replacing the ListView
  * with a GridView.
  **/
-public class FragmentDisplayScore extends Fragment implements AbsListView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor> {
+public class FragmentEditStudentDetails extends Fragment implements AbsListView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static String studentId;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -45,7 +50,7 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private SimpleCursorAdapter mAdapter;
+    private CustomStudentEditCursorAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
     public static FragmentDisplayScore newInstance(String param1, String param2) {
@@ -61,7 +66,7 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FragmentDisplayScore() {
+    public FragmentEditStudentDetails() {
     }
 
     @Override
@@ -77,8 +82,8 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
         int[] to = new int[]{R.id.student_name_position, R.id.student_name_field, R.id.student_score_field};
 
         // TODO: Change Adapter to display your content
-        mAdapter = new SimpleCursorAdapter(getActivity(),
-                R.layout.custom_fragment_display_score,null, from, to, 0);
+        mAdapter = new CustomStudentEditCursorAdapter(getActivity(),
+                R.layout.fragment_edit_student_details,null, from, to, 0);
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -96,6 +101,7 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
 
         return view;
     }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -133,8 +139,8 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String projection[] = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SCORE};
-        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI , projection, null, null, StudentRecords.STUDENT_SCORE+" desc");
+        String projection[] = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SCORE, StudentRecords.STUDENT_ID};
+        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI , projection, null, null, StudentRecords.STUDENT_SCORE + " desc");
 
     }
 

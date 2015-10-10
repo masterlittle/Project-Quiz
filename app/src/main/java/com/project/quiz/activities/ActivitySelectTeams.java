@@ -1,10 +1,7 @@
 package com.project.quiz.activities;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -66,14 +63,15 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
         }
     }
 
+
     @Override
-    public void showEditDialog(int position) {
+    public void showEditDialog(int position, String info) {
         dialog = new CustomDialogClass(this);
         dialog.show();
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int width = metrics.widthPixels;
-        int height = metrics.heightPixels;
-        dialog.getWindow().setLayout((width * 4) / 7, (height * 3) / 7);
+//        DisplayMetrics metrics = getResources().getDisplayMetrics();
+//        int width = metrics.widthPixels;
+//        int height = metrics.heightPixels;
+//        dialog.getWindow().setLayout((width * 6) / 7, (height * 5) / 7);
     }
 
     @Override
@@ -90,6 +88,6 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
 
     @Override
     public void doWork() {
-        showEditDialog(0);
+        showEditDialog(0, "");
     }
 }

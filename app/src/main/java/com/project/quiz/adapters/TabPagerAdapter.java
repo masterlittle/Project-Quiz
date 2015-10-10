@@ -3,11 +3,9 @@ package com.project.quiz.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.view.View;
 
 import com.project.quiz.fragments.FragmentAddStudentRecords;
-import com.project.quiz.fragments.FragmentDisplayScore;
+import com.project.quiz.fragments.FragmentEditStudentDetails;
 
 /**
  * Created by Shitij on 27/09/15.
@@ -28,7 +26,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new FragmentAddStudentRecords();
             case 1:
-                return new FragmentDisplayScore();
+                return new FragmentEditStudentDetails();
         }
 
         return null;

@@ -33,9 +33,9 @@ public class FragmentAddStudentRecords extends Fragment {
     private String mParam2;
     private String LOG_TAG = FragmentAddStudentRecords.class.getSimpleName();
 
-    @Bind(R.id.nameEditLayout)
-    TextInputLayout nameEditLayout;
+    @Bind(R.id.nameEditLayout) TextInputLayout nameEditLayout;
     @Bind(R.id.yearEditLayout) TextInputLayout yearEditLayout;
+    @Bind(R.id.scoreEditLayout) TextInputLayout scoreEditLayout;
     @OnClick(R.id.button_next)
     public void onClick(){
         if(nameEditLayout.getEditText()!=null && nameEditLayout.getEditText().getText().toString().length() <= 0){
@@ -49,7 +49,12 @@ public class FragmentAddStudentRecords extends Fragment {
                 ContentValues values = new ContentValues();
                 values.put(StudentRecords.STUDENT_NAME, nameEditLayout.getEditText().getText().toString());
                 values.put(StudentRecords.STUDENT_YEAR, yearEditLayout.getEditText().getText().toString());
-                values.put(StudentRecords.STUDENT_SCORE, 0);
+                if(scoreEditLayout.getEditText().getText().toString().trim().length() > 0){
+                    values.put(StudentRecords.STUDENT_SCORE, scoreEditLayout.getEditText().getText().toString());
+                }
+                else{
+                    values.put(StudentRecords.STUDENT_SCORE, 0);
+                }
                 values.put(StudentRecords.STUDENT_ID, UUID.randomUUID().toString());
                 values.put(StudentRecords.STUDENT_SELECTED, 0);
                 getActivity().getContentResolver().insert(DataContentProvider.CONTENT_STORE_STUDENTS_URI, values);
