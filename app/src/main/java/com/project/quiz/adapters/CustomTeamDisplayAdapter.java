@@ -59,9 +59,8 @@ public class CustomTeamDisplayAdapter extends BaseAdapter {
             viewHolder = (ViewHolder)view.getTag();
             viewHolder.teamNumber.setText(String.valueOf(position+1));
             ArrayList<String> members = teams.get(position+1);
-            while(members.size()>0){
-                m = m + members.get(0) + "\n";
-                members.remove(0);
+            for(String name: members){
+                m+=name+"\n\n";
             }
             viewHolder.teamMembers.setText(m);
         return view;

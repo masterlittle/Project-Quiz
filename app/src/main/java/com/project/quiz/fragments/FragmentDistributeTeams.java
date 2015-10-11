@@ -162,7 +162,7 @@ public class FragmentDistributeTeams extends Fragment implements LoaderManager.L
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String projection[] = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME};
-        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI, projection, StudentRecords.STUDENT_SELECTED + "=?", new String[]{"1"}, StudentRecords.STUDENT_SCORE);
+        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI, projection, StudentRecords.STUDENT_SELECTED + "=?", new String[]{"1"}, StudentRecords.STUDENT_SCORE + " desc");
     }
 
     @Override

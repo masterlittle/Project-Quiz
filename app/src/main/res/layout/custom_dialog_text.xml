@@ -6,6 +6,7 @@
     <com.project.quiz.customviews.TextViewBoldFont
         android:text="Enter number of seeds/teams."
         android:padding="@dimen/abc_action_bar_content_inset_material"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_size_xxlarge"
         android:gravity="center"
         android:id="@+id/dialog_heading"
@@ -14,6 +15,7 @@
     <com.project.quiz.customviews.TextViewRegularFont
         android:padding="@dimen/abc_action_bar_content_inset_material"
         android:textSize="@dimen/font_size_xlarge"
+        android:textColor="@color/colorPrimary"
         android:gravity="center"
         android:id="@+id/dialog_message"
         android:layout_width="match_parent"

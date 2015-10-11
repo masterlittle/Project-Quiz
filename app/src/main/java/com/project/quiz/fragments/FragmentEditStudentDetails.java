@@ -5,20 +5,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListAdapter;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
 import com.project.quiz.R;
 import com.project.quiz.adapters.CustomStudentEditCursorAdapter;
@@ -28,16 +23,17 @@ import com.project.quiz.database.StudentRecords;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * A fragment representing a list of Items.
- * <p>
+ * <p/>
  * Large screen devices (such as tablets) are supported by replacing the ListView
  * with a GridView.
  **/
-public class FragmentEditStudentDetails extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class FragmentEditStudentDetails extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,14 +49,18 @@ public class FragmentEditStudentDetails extends Fragment implements LoaderManage
      * The fragment's ListView/GridView.
      */
     private AbsListView mListView;
+    private View view;
+    @Bind(R.id.container)
+    CoordinatorLayout container;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
     private CustomStudentEditCursorAdapter mAdapter;
+
     @OnClick(R.id.floating_action_button)
-    public void OnClickButton(){
+    public void OnClickButton() {
         HashMap<String, Integer> studentScores = mAdapter.getStudentScores();
         setScore(studentScores);
     }
@@ -95,7 +95,7 @@ public class FragmentEditStudentDetails extends Fragment implements LoaderManage
 
         // TODO: Change Adapter to display your content
         mAdapter = new CustomStudentEditCursorAdapter(getActivity(),
-                R.layout.fragment_edit_student_details,null, from, to, 0);
+                R.layout.fragment_edit_student_details, null, from, to, 0);
         mAdapter.getInstance(mAdapter);
         getLoaderManager().initLoader(0, null, this);
     }
@@ -104,15 +104,22 @@ public class FragmentEditStudentDetails extends Fragment implements LoaderManage
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item, container, false);
-
+        ButterKnife.bind(this, view);
+        container.requestFocus();
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
-        ButterKnife.bind(this, view);
         return view;
     }
 
+    @Override
+    public void onResume() {
+        if(view!=null) {
+            hideKeyboard(view);
+        }
+        super.onResume();
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -132,7 +139,7 @@ public class FragmentEditStudentDetails extends Fragment implements LoaderManage
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String projection[] = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SCORE, StudentRecords.STUDENT_ID};
-        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI , projection, null, null, StudentRecords.STUDENT_NAME + " asc");
+        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI, projection, null, null, StudentRecords.STUDENT_NAME + " asc");
 
     }
 
@@ -146,13 +153,13 @@ public class FragmentEditStudentDetails extends Fragment implements LoaderManage
         mAdapter.swapCursor(null);
     }
 
-    public void setScore(final HashMap<String, Integer> studentScores){
+    public void setScore(final HashMap<String, Integer> studentScores) {
         final int length = studentScores.size();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < length; i++) {
-                    Map.Entry<String,Integer> entry=studentScores.entrySet().iterator().next();
+                    Map.Entry<String, Integer> entry = studentScores.entrySet().iterator().next();
                     ContentValues values = new ContentValues();
                     values.put(StudentRecords.STUDENT_SCORE, entry.getValue());
                     getActivity().getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI, values, StudentRecords.STUDENT_ID + "=?", new String[]{entry.getKey()});

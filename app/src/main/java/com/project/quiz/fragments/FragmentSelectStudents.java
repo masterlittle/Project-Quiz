@@ -2,13 +2,10 @@ package com.project.quiz.fragments;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +16,14 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.project.quiz.R;
-import com.project.quiz.adapters.CustomSimpleCursorAdapter;
+import com.project.quiz.adapters.CustomCheckboxCursorAdapter;
 import com.project.quiz.contentprovider.DataContentProvider;
-import com.project.quiz.customClasses.CustomDialogClass;
 import com.project.quiz.database.StudentRecords;
-import com.project.quiz.interfaces.DialogBoxListener;
 import com.project.quiz.utils.CommonLibs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
@@ -89,7 +83,7 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private CustomSimpleCursorAdapter mAdapter;
+    private CustomCheckboxCursorAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
     public static FragmentSelectStudents newInstance(String param1, String param2) {
@@ -120,7 +114,7 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
         String[] from = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SELECTED, StudentRecords.STUDENT_ID};
         int[] to = new int[]{R.id.student_name_position, R.id.student_name_field, R.id.student_select_checkbox, R.id.student_id_field};
         // TODO: Change Adapter to display your content
-        mAdapter = new CustomSimpleCursorAdapter(getActivity(),
+        mAdapter = new CustomCheckboxCursorAdapter(getActivity(),
                 R.layout.custom_fragment_select_students, null, from, to, 0, selectedStudents, selectedStudentList);
         getLoaderManager().initLoader(0, null, this);
     }
@@ -176,12 +170,18 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String projection[] = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SELECTED, StudentRecords.STUDENT_ID};
-        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI , projection, null, null, StudentRecords.STUDENT_SCORE);
+        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI , projection, null, null, StudentRecords.STUDENT_NAME + " asc");
 
     }
 
     @Override
     public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
+        data.moveToPosition(-1);
+        while(data.moveToNext()) {
+            String student_id = data.getString(data.getColumnIndex(StudentRecords.STUDENT_ID));
+            selectedStudents.put(student_id, 1);
+            selectedStudentList.add(student_id);
+        }
         mAdapter.swapCursor(data);
     }
 

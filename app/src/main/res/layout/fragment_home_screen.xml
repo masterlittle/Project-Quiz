@@ -1,4 +1,5 @@
 <LinearLayout
+    android:padding="40dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -8,29 +9,29 @@
     tools:context="com.project.quiz.fragments.FragmentHomeScreen">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.project.quiz.customviews.TextViewRegularFont
         android:textSize="24sp"
         android:textColor="@color/colorTextDark"
         android:gravity="center"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="@string/addStudent" />
-    <TextView
+        android:text="@string/message1" />
+    <com.project.quiz.customviews.TextViewRegularFont
         android:textSize="24sp"
         android:textColor="@color/colorTextDark"
         android:gravity="center"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="@string/displatScores" />
-    <TextView
+        android:text="@string/message2" />
+    <com.project.quiz.customviews.TextViewRegularFont
         android:textSize="24sp"
         android:textColor="@color/colorTextDark"
         android:gravity="center"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="@string/createTeams" />
+        android:text="@string/message3" />
 
 </LinearLayout>

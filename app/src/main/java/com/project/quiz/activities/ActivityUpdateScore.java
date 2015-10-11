@@ -2,9 +2,11 @@ package com.project.quiz.activities;
 
 import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Handler;
@@ -18,6 +20,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
 
 public class ActivityUpdateScore extends AppCompatActivity implements UpdateScoreCallback, LoaderManager.LoaderCallbacks<Cursor>, ChangeFragment {
     private CardArrayAdapter cardArrayAdapter;
@@ -59,6 +63,7 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
     AppBarLayout appBarLayout;
     private String numberOfTeams;
     private AppBarLayout.Behavior behavior;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @OnClick(R.id.floating_action_button)
     public void onClickFloating() {
@@ -112,6 +117,7 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
 
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setAdapter(cardArrayAdapter);
+
         getLoaderManager().initLoader(0, null, this);
 
     }
@@ -262,5 +268,22 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, display, "FragmentDisplayScore").addToBackStack("FragmentDisplayScore").commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }

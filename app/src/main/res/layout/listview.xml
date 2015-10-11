@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:text="Scores"/>
     <View
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="124dp"
         android:background="@color/colorPrimaryLight"
         android:layout_width="match_parent"
         android:layout_height="3dp"/>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="126dp"
         android:id="@+id/card_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,11 +61,12 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="45dp"
                     android:background="@color/colorPrimaryLight"
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_half"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -76,6 +77,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_one"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -86,6 +88,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_two"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -96,6 +99,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_five"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -106,6 +110,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_ten"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -118,12 +123,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="45dp"
                     android:background="#FCA258"
                     android:orientation="horizontal"
                     app:layout_scrollFlags="scroll">
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_half"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -134,6 +140,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_one"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -144,6 +151,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_two"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -154,6 +162,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_five"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -164,6 +173,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_ten"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -179,6 +189,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:elevation="4dp"
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

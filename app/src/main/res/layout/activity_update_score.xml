@@ -1,72 +1,139 @@
 <LinearLayout
+    android:paddingTop="@dimen/padding_custom_10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
-    android:background="@drawable/card_with_rounded_edges"
+    android:background="@drawable/card_drawable"
+    android:elevation="2dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:orientation="horizontal">
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:id="@+id/team_number_text"
+        android:layout_weight="1"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryLight"
+        android:text="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
     <LinearLayout
-        android:orientation="horizontal"
+        android:gravity="center"
         android:padding="10dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textColor="@color/colorTextDark"
-            android:textSize="22sp"
-            android:text="Team"
-            android:id="@+id/team_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="1"
-            android:textColor="@color/colorTextDark"
-            android:textSize="22sp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/team_number_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:padding="5dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textColor="@color/colorTextDark"
-            android:text="Current Score"
-            android:textSize="16sp"
-            android:id="@+id/current_score_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textColor="@color/GO1"
-            android:textSize="16sp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/current_score_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:orientation="vertical"
+        android:layout_weight="5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.project.quiz.customviews.TextViewRegularFont
+                android:paddingBottom="@dimen/padding_custom_10dp"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:textSize="@dimen/font_size_xlarge"
+                android:textColor="@color/colorPrimaryLight"
+                android:text="Current Score:"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <com.project.quiz.customviews.TextViewBoldFont
+                android:id="@+id/current_score_number"
+                android:gravity="center"
+                android:layout_weight="0.8"
+                android:textSize="@dimen/font_size_xlarge"
+                android:textColor="@color/colorPrimaryLight"
+                android:text="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.project.quiz.customviews.TextViewRegularFont
+                android:gravity="left"
+                android:layout_weight="1"
+                android:textSize="@dimen/font_size_xlarge"
+                android:textColor="@color/colorPrimaryLight"
+                android:text="Changed Score:"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <com.project.quiz.customviews.TextViewRegularFont
+                android:gravity="center"
+                android:layout_weight="0.8"
+                android:id="@+id/inc_score_number"
+                android:textSize="@dimen/font_size_xlarge"
+                android:textColor="@color/GO6"
+                android:text="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:padding="5dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textColor="@color/colorTextDark"
-            android:textSize="16sp"
-            android:text="Change Score by"
-            android:id="@+id/inc_score_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textColor="@color/GO5"
-            android:textSize="16sp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/inc_score_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="10dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:textColor="@color/colorTextDark"-->
+            <!--android:textSize="22sp"-->
+            <!--android:text="Team"-->
+            <!--android:id="@+id/team_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:text="1"-->
+            <!--android:textColor="@color/colorTextDark"-->
+            <!--android:textSize="22sp"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:id="@+id/team_number_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+        <!--android:padding="5dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:textColor="@color/colorTextDark"-->
+            <!--android:text="Current Score"-->
+            <!--android:textSize="16sp"-->
+            <!--android:id="@+id/current_score_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:textColor="@color/GO1"-->
+            <!--android:textSize="16sp"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:id="@+id/current_score_number"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:padding="5dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:textColor="@color/colorTextDark"-->
+            <!--android:textSize="16sp"-->
+            <!--android:text="Change Score by"-->
+            <!--android:id="@+id/inc_score_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:textColor="@color/GO5"-->
+            <!--android:textSize="16sp"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:id="@+id/inc_score_number"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
 </LinearLayout>

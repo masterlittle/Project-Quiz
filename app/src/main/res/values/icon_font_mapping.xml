@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="icon_search">a</string>
+    <string name="icon_location">b</string>
+    <string name="icon_facebook">c</string>
+    <string name="icon_off">d</string>
+    <string name="icon_network">e</string>
+    <string name="icon_gps">f</string>
+    <string name="icon_category_listing">g</string>
+    <string name="icon_order_history2">h</string>
+    <string name="icon_oops">i</string>
+    <string name="icon_reload">j</string>
+    <string name="icon_placeholder">k</string>
+    <string name="icon_return">l</string>
+    <string name="icon_location_disabled">m</string>
+    <string name="icon_angle_down">n</string>
+    <string name="icon_angle_left">o</string>
+    <string name="icon_close">p</string>
+    <string name="icon_share">q</string>
+    <string name="icon_history">r</string>
+    <string name="icon_shop">K</string>
+    <string name="icon_tick">t</string>
+    <string name="icon_angle_right">u</string>
+    <string name="icon_angle_up">v</string>
+    <string name="icon_delete">w</string>
+    <string name="icon_user">x</string>
+    <string name="icon_star">y</string>
+    <string name="icon_sixty_min">z</string>
+    <string name="icon_help">A</string>
+    <string name="icon_delivery_boy">B</string>
+    <string name="icon_filter">C</string>
+    <string name="icon_clock">D</string>
+    <string name="icon_primitive_dot">E</string>
+    <string name="icon_delivery_boy_bag">F</string>
+    <string name="icon_arrow_right">G</string>
+    <string name="icon_address">H</string>
+    <string name="icon_tick_thank_you">I</string>
+    <string name="icon_arrow">J</string>
+    <string name="icon_calendar_1">L</string>
+    <string name="icon_cart2">M</string>
+    <string name="icon_address1">N</string>
+    <string name="icon_delivery_boy_bag_reverse">O</string>
+    <string name="icon_book">P</string>
+    <string name="icon_edit">Q</string>
+    <string name="icon_logo">R</string>
+    <string name="icon_tick_double">S</string>
+    <string name="icon_delivery_boy_1">T</string>
+    <string name="icon_call">U</string>
+    <string name="icon_googleplus">V</string>
+    <string name="icon_refresh">W</string>
+    <string name="icon_andriod_phone">X</string>
+    <string name="icon_free_delivery">Y</string>
+    <string name="icon_warning">Z</string>
+    <string name="icon_referral">0</string>
+    <string name="icon_notification">1</string>
+    <string name="icon_whatsapp">3</string>
+    <string name="icon_phone">4</string>
+    <string name="icon_discountCode">6</string>
+    <string name="icon_invoice">7</string>
+    <string name="icon_popup">#</string>
+    <string name="icon_checkbox_unchecked">8</string>
+    <string name="icon_checkbox_checked">9</string>
+    <string name="icon_search_new">%</string>
+    <string name="icon_search_results_not_found">$</string>
+    <string name="icon_add_address_checkout">&amp;</string>
+
+    <!-- Unicode Characters-->
+    <string name="icon_rupee">\u20b9</string>
+
+
+</resources>

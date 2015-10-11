@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.project.quiz.R;
 import com.project.quiz.contentprovider.DataContentProvider;
 import com.project.quiz.customClasses.CustomNumberPicker;
+import com.project.quiz.customviews.IconTextView;
 import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentSelectStudents;
@@ -60,7 +61,7 @@ public class CustomStudentEditCursorAdapter extends SimpleCursorAdapter{
         holder = (ViewHolder) view.getTag();
         final String student_id = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_ID));
         holder.studentName.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_NAME)));
-        holder.studentPosition.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.COLUMN_ID)));
+        holder.studentPosition.setText(String.valueOf(cursor.getPosition()+1));
         final int score = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_SCORE)));
         holder.studentScore.setText(String.valueOf(score));
         studentScores.put(student_id, score);
@@ -99,13 +100,13 @@ public class CustomStudentEditCursorAdapter extends SimpleCursorAdapter{
 
     public static class ViewHolder {
         @Bind(R.id.student_name_position)
-        TextView studentPosition;
+        TextViewRegularFont studentPosition;
         @Bind(R.id.student_name_field)
-        TextView studentName;
+        TextViewRegularFont studentName;
         @Bind(R.id.student_score_field)
         TextViewRegularFont studentScore;
         @Bind(R.id.student_delete_button)
-        TextViewRegularFont studentDelete;
+        IconTextView studentDelete;
 
         public ViewHolder(View v) {
             ButterKnife.bind(this, v);

@@ -128,9 +128,9 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -150,5 +150,11 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
             FragmentDisplayScore displayScore = new FragmentDisplayScore();
             fragmentTransaction.replace(R.id.frame, displayScore, "Display Score").addToBackStack("Display Score").commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        getSupportActionBar().setTitle("Home");
+        super.onBackPressed();
     }
 }

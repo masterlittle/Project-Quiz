@@ -62,6 +62,7 @@ public class FragmentAddStudentRecords extends Fragment {
                 nameEditLayout.getEditText().setText("");
                 yearEditLayout.getEditText().setText("");
                 scoreEditLayout.getEditText().setText("");
+                nameEditLayout.requestFocus();
             }catch(Exception exception){
                 Logging.logException(LOG_TAG, exception, CommonLibs.Priority.MEDIUM);
             }

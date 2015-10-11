@@ -30,7 +30,7 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
         setContentView(R.layout.activity_select_teams);
 
         ButterKnife.bind(this);
-        toolbar.setTitle("Home");
+        toolbar.setTitle("Create Teams");
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
@@ -56,9 +56,9 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -72,7 +72,7 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
         } else if (id == CommonLibs.FragmentId.ID_FRAGMENT_DISTRIBUTE_STUDENTS) {
             FragmentDistributeTeams fragmentDistributeTeams = new FragmentDistributeTeams();
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container, fragmentDistributeTeams, "FRAGMENT_SELECT_STUDENTS").commit();
+            transaction.replace(R.id.container, fragmentDistributeTeams, "FRAGMENT_DISTRIBUTE_STUDENTS").addToBackStack("FRAGMENT_DISTRIBUTE_STUDENTS").commit();
         }
     }
 

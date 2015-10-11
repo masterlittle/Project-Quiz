@@ -5,14 +5,14 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="50dp">
-    <TextView
+    <com.project.quiz.customviews.TextViewRegularFont
         android:textColor="@color/colorPrimaryLight"
         android:layout_gravity="center"
         android:visibility="gone"
         android:id="@+id/student_id_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <TextView
+    <com.project.quiz.customviews.TextViewRegularFont
         android:textColor="@color/colorPrimaryLight"
         android:layout_gravity="center"
         android:id="@+id/student_name_position"
@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.project.quiz.customviews.TextViewRegularFont
         android:layout_gravity="center"
         android:id="@+id/student_name_field"
         android:gravity="left"

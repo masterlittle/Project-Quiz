@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@color/grey_with_30_percent_opacity"
+    android:background="@color/colorPrimary"
     android:layout_width="300dp"
     android:layout_height="match_parent">
 
     <com.project.quiz.customviews.TextViewRegularFont
         android:text="Edit Score"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryLight"
         android:gravity="center"
         android:textSize="30sp"
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:paddingBottom="@dimen/padding_custom_10dp"
             android:gravity="center"
             android:textColor="@color/white"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:textSize="@dimen/font_size_large"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />

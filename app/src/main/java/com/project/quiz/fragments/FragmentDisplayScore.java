@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.project.quiz.R;
+import com.project.quiz.adapters.CustomDisplaySimpleCursorAdapter;
 import com.project.quiz.contentprovider.DataContentProvider;
 import com.project.quiz.database.StudentRecords;
 
@@ -45,7 +47,7 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private SimpleCursorAdapter mAdapter;
+    private CustomDisplaySimpleCursorAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
     public static FragmentDisplayScore newInstance(String param1, String param2) {
@@ -73,11 +75,14 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setTitle("League Standings");
+
         String[] from = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SCORE};
         int[] to = new int[]{R.id.student_name_position, R.id.student_name_field, R.id.student_score_field};
 
         // TODO: Change Adapter to display your content
-        mAdapter = new SimpleCursorAdapter(getActivity(),
+        mAdapter = new CustomDisplaySimpleCursorAdapter(getActivity(),
                 R.layout.custom_fragment_display_score,null, from, to, 0);
         getLoaderManager().initLoader(0, null, this);
     }

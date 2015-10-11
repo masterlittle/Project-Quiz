@@ -9,7 +9,7 @@
     <string name="enterName">Enter Name</string>
     <string name="enterYear">Enter Year</string>
     <string name="studentDetails">Enter Student Details</string>
-    <string name="addStudent">Add Student</string>
+    <string name="addStudent"> Student Section</string>
     <string name="title_activity_activity_select_teams">ActivitySelectTeams</string>
 
 <!-- TODO: Remove or change this placeholder text -->
@@ -28,4 +28,8 @@
     <string name="finish">Finish</string>
     <string name="enterScore">Enter Score</string>
     <string name="displayLeagueStandings">Display League Standings</string>
+    <string name="message1">Hola!! \n\nYou can edit the scores and add students in Student section.</string>
+    <string name="message2">Use the Navigation menu to find your way around the app.</string>
+    <string name="message3"> Create a team and keep Live scores!</string>
+    <string name="instructions">Click on a team and adjust the scores. You can change score of multiple teams in one go. Press the action button to commit all changes. Click Finish on the menu button to finish and commit scores to league. Do NOT press back in between.</string>
 </resources>

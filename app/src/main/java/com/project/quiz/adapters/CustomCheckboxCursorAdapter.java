@@ -12,6 +12,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.project.quiz.R;
+import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentSelectStudents;
 
@@ -24,13 +25,13 @@ import butterknife.ButterKnife;
 /**
  * Created by Shitij on 27/09/15.
  */
-public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
+public class CustomCheckboxCursorAdapter extends SimpleCursorAdapter {
     public Context context;
     private int layout;
     public HashMap<String, Integer> selectedStudents = new HashMap<>();
     public ArrayList<String> selectedStudentList = new ArrayList<>();
 
-    public CustomSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags, HashMap<String, Integer> selectedStudents, ArrayList<String> selectedStudentList) {
+    public CustomCheckboxCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags, HashMap<String, Integer> selectedStudents, ArrayList<String> selectedStudentList) {
         super(context, layout, c, from, to, flags);
         this.context = context;
         this.layout = layout;
@@ -49,11 +50,9 @@ public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
 
         holder = (ViewHolder)view.getTag();
         String student_id = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_ID));
-        selectedStudents.put(student_id, 1);
-        selectedStudentList.add(student_id);
         holder.studentId.setText(student_id);
         holder.studentName.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_NAME)));
-        holder.studentPosition.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.COLUMN_ID)));
+        holder.studentPosition.setText((String.valueOf(cursor.getPosition() + 1)));
         selected = cursor.getInt(cursor.getColumnIndex(StudentRecords.STUDENT_SELECTED)) == 1;
         holder.studentCheckbox.setSelected(selected);
         final ViewHolder finalHolder = holder;
@@ -79,10 +78,10 @@ public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
 
     public static class ViewHolder {
         @Bind(R.id.student_name_position)
-        TextView studentPosition;
+        TextViewRegularFont studentPosition;
         @Bind(R.id.student_name_field)
-        TextView studentName;
-        @Bind(R.id.student_id_field) TextView  studentId;
+        TextViewRegularFont studentName;
+        @Bind(R.id.student_id_field) TextViewRegularFont  studentId;
         @Bind(R.id.student_select_checkbox)
         CheckBox studentCheckbox;
 
