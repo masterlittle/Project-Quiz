@@ -17,7 +17,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:id="@+id/student_name_field"
         android:gravity="center"
         android:textColor="@color/colorPrimaryLight"
@@ -26,7 +26,7 @@
         android:layout_weight="4"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
-    <NumberPicker
+    <com.project.quiz.customviews.TextViewRegularFont
         android:layout_gravity="center"
         android:textSize="18sp"
         android:gravity="center"

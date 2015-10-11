@@ -59,6 +59,9 @@ public class FragmentAddStudentRecords extends Fragment {
                 values.put(StudentRecords.STUDENT_SELECTED, 0);
                 getActivity().getContentResolver().insert(DataContentProvider.CONTENT_STORE_STUDENTS_URI, values);
                 Toast.makeText(getActivity(), "Student has been added", Toast.LENGTH_SHORT).show();
+                nameEditLayout.getEditText().setText("");
+                yearEditLayout.getEditText().setText("");
+                scoreEditLayout.getEditText().setText("");
             }catch(Exception exception){
                 Logging.logException(LOG_TAG, exception, CommonLibs.Priority.MEDIUM);
             }

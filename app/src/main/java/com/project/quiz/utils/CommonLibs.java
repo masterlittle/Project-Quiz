@@ -52,10 +52,11 @@ public class CommonLibs {
         public static int ID_FRAGMENT_SELECT_TEAMS=3;
         public static int ID_FRAGMENT_HOME_SCREEN=4;
         public static int ID_FRAGMENT_DISTRIBUTE_STUDENTS=5;
+        public static int ID_FRAGMENT_DISPLAY_TEAM_SCORES=6;
     }
 
     public static class SharedPrefsKeys{
-        public static String TEAM_NUMBER;
+        public static String TEAM_NUMBER = "team_number";
     }
 
 }

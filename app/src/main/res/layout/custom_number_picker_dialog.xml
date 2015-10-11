@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@color/grey_with_30_percent_opacity"
+    android:layout_width="300dp"
+    android:layout_height="match_parent">
+
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:text="Edit Score"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <NumberPicker
+        android:solidColor="@color/colorPrimary"
+        android:background="@color/colorPrimaryLight"
+        android:scrollbarSize="@dimen/font_size_xlarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker"
+        android:layout_gravity="center_horizontal" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:id="@+id/button_no"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:text="Cancel"
+            android:paddingTop="@dimen/padding_custom_10dp"
+            android:paddingBottom="@dimen/padding_custom_10dp"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/white"
+            android:textSize="@dimen/font_size_large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:id="@+id/button_yes"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:text="OK"
+            android:paddingTop="@dimen/padding_custom_10dp"
+            android:paddingBottom="@dimen/padding_custom_10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            android:textSize="@dimen/font_size_large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>

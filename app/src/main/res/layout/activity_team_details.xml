@@ -29,7 +29,7 @@
        android:layout_height="wrap_content">
        <EditText
            android:textColor="@color/colorPrimaryLight"
-           android:inputType="number"
+           android:inputType="text"
            android:id="@+id/edit_quiz_tag"
            android:hint="Enter quiz tag"
            android:layout_width="match_parent"

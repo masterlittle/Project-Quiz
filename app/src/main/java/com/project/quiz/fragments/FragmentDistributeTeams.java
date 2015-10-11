@@ -52,6 +52,7 @@ public class FragmentDistributeTeams extends Fragment implements LoaderManager.L
     private ListView listView;
     private ArrayList<String> selectedStudents = new ArrayList<>();
     private HashMap<Integer, ArrayList<String>> teams = new HashMap<>();
+    private HashMap<Integer, ArrayList<String>> tempTeams = new HashMap<>();
     private int numberOfTeams;
     private String mParam1;
     private String mParam2;
@@ -65,12 +66,12 @@ public class FragmentDistributeTeams extends Fragment implements LoaderManager.L
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < teams.size(); i++) {
-                    int length = teams.get(i + 1).size();
+                for (int i = 0; i < tempTeams.size(); i++) {
+                    int length = tempTeams.get(i + 1).size();
                     for (int j = 0; j < length; j++) {
                         ContentValues values = new ContentValues();
                         values.put(StudentRecords.TEAM_NUMBER, i + 1);
-                        getContext().getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI, values, StudentRecords.STUDENT_NAME + "=?", new String[]{teams.get(i + 1).get(j)});
+                        getContext().getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI, values, StudentRecords.STUDENT_NAME + "=?", new String[]{tempTeams.get(i + 1).get(j)});
                     }
                 }
                 Intent intent = new Intent(getActivity(), ActivityTeamDetails.class);
@@ -177,6 +178,7 @@ public class FragmentDistributeTeams extends Fragment implements LoaderManager.L
 
             for (int i = 0; i < numberOfTeams; i++) {
                 teams.put(i + 1, new ArrayList<String>());
+                tempTeams.put(i + 1, new ArrayList<String>());
             }
 
             while (low != selectedStudents.size()) {
@@ -188,6 +190,7 @@ public class FragmentDistributeTeams extends Fragment implements LoaderManager.L
                     }
                     String student = selectedStudents.get(random);
                     teams.get(i + 1).add(student);
+                    tempTeams.get(i + 1).add(student);
                     selectedStudents.remove(random);
 //                    tempTeamsStudents.put(random, String.valueOf(random));
                 }
@@ -197,11 +200,13 @@ public class FragmentDistributeTeams extends Fragment implements LoaderManager.L
                 random = randomGenerator(0, selectedStudents.size());
                 String student = selectedStudents.get(random);
                 teams.get(i + 1).add(student);
+                tempTeams.get(i + 1).add(student);
                 selectedStudents.remove(random);
             }
             adapter.changeData(teams);
             adapter.notifyDataSetChanged();
         }
+        data.moveToPosition(-1);
     }
 
     private int randomGenerator(int low, int high) {

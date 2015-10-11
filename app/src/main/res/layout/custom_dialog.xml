@@ -11,14 +11,14 @@
         android:id="@+id/dialog_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <com.project.quiz.customviews.EditTextRegularFont
-        android:text="0"
-        android:padding="@dimen/abc_action_bar_content_inset_material"
+    <NumberPicker
+        android:background="@color/colorPrimaryLight"
+        android:solidColor="@color/colorPrimary"
         android:gravity="center_horizontal"
         android:inputType="numberDecimal"
         android:textStyle="bold"
         android:textSize="@dimen/font_size_large"
-        android:id="@+id/dialog_text"
+        android:id="@+id/numberPicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <LinearLayout

@@ -1,5 +1,6 @@
 package com.project.quiz.activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.project.quiz.R;
+import com.project.quiz.contentprovider.DataContentProvider;
+import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentDisplayScore;
 import com.project.quiz.fragments.FragmentHomeScreen;
 import com.project.quiz.interfaces.ChangeFragment;
@@ -42,6 +45,8 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        upadateTeams();
+
         loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_HOME_SCREEN, null);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().findItem(R.id.addStudents).setChecked(true);
@@ -68,6 +73,12 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
 
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+    }
+
+    private void upadateTeams() {
+        ContentValues values = new ContentValues();
+        values.put(StudentRecords.TEAM_NUMBER, -1);
+        getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI,values, null, null);
     }
 
     @Override

@@ -27,4 +27,5 @@
     <string name="displayScores">Display Scores</string>
     <string name="finish">Finish</string>
     <string name="enterScore">Enter Score</string>
+    <string name="displayLeagueStandings">Display League Standings</string>
 </resources>

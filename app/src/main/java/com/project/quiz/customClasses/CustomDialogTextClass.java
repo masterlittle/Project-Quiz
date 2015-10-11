@@ -30,6 +30,7 @@ public class CustomDialogTextClass extends Dialog {
     @OnClick(R.id.button_yes)
     public void OnClick(){
         listener.onDialogPositivePressed();
+        dismiss();
     }
     @OnClick(R.id.button_no)
     public void onClickNo(){

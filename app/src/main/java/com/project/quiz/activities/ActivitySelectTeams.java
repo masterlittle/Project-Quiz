@@ -2,10 +2,13 @@ package com.project.quiz.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.project.quiz.R;
+import com.project.quiz.contentprovider.DataContentProvider;
 import com.project.quiz.customClasses.CustomDialogClass;
 import com.project.quiz.fragments.FragmentDistributeTeams;
 import com.project.quiz.fragments.FragmentSelectStudents;
@@ -13,13 +16,23 @@ import com.project.quiz.interfaces.ChangeFragment;
 import com.project.quiz.interfaces.DialogBoxListener;
 import com.project.quiz.utils.CommonLibs;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxListener, ChangeFragment, FragmentSelectStudents.OnFragmentInteraction {
     private CustomDialogClass dialog;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_teams);
+
+        ButterKnife.bind(this);
+        toolbar.setTitle("Home");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
@@ -66,8 +79,13 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
 
     @Override
     public void showEditDialog(int position, String info) {
-        dialog = new CustomDialogClass(this);
-        dialog.show();
+        if(count!=0) {
+            dialog = new CustomDialogClass(this, (int) count);
+            dialog.show();
+        }
+        else{
+            Toast.makeText(this,"Please select atleast one student",Toast.LENGTH_SHORT).show();
+        }
 //        DisplayMetrics metrics = getResources().getDisplayMetrics();
 //        int width = metrics.widthPixels;
 //        int height = metrics.heightPixels;
@@ -87,7 +105,8 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
     }
 
     @Override
-    public void doWork() {
+    public void doWork(int value) {
+        count = value;
         showEditDialog(0, "");
     }
 }

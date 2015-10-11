@@ -46,12 +46,12 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    public static HashMap<String, Integer> selectedStudents = new HashMap<>();
-    public static ArrayList<String> selectedStudentList = new ArrayList<>();
+    public  HashMap<String, Integer> selectedStudents = new HashMap<>();
+    public  ArrayList<String> selectedStudentList = new ArrayList<>();
     private OnFragmentInteraction mListener;
 
     public interface OnFragmentInteraction{
-        public void doWork();
+        public void doWork(int value);
     }
 
     // TODO: Rename and change types of parameters
@@ -59,7 +59,13 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
     private String mParam2;
     @OnClick(R.id.floating_action_button)
     public void onFloatingButtonClick(){
-        mListener.doWork();
+        int count =0;
+        for(String key : selectedStudentList){
+            if(selectedStudents.containsKey(key) && selectedStudents.get(key) == 1){
+                count++;
+            }
+        }
+        mListener.doWork(count);
     }
 
     @OnItemClick(android.R.id.list)
@@ -115,7 +121,7 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
         int[] to = new int[]{R.id.student_name_position, R.id.student_name_field, R.id.student_select_checkbox, R.id.student_id_field};
         // TODO: Change Adapter to display your content
         mAdapter = new CustomSimpleCursorAdapter(getActivity(),
-                R.layout.custom_fragment_select_students, null, from, to, 0);
+                R.layout.custom_fragment_select_students, null, from, to, 0, selectedStudents, selectedStudentList);
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -201,6 +207,7 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
             i++;
         }
         selectedStudents.clear();
+        selectedStudentList.clear();
         getFragmentLoader().loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_DISTRIBUTE_STUDENTS,null);
 
     }

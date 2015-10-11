@@ -3,8 +3,10 @@ package com.project.quiz.contentprovider;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
@@ -15,6 +17,8 @@ import com.project.quiz.database.StorePointsTable;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.log.Logging;
 import com.project.quiz.utils.CommonLibs;
+
+import java.sql.SQLException;
 
 /**
  * Created by Shitij on 25/07/15.
@@ -77,6 +81,13 @@ public class DataContentProvider extends ContentProvider {
         return false;
     }
 
+    public long getCountOfProducts(Context context) {
+        DataDatabaseHelper database2 = new DataDatabaseHelper(context);
+        SQLiteDatabase db = database2.getReadableDatabase();
+        long c = DatabaseUtils.queryNumEntries(db, StudentRecords.TABLE_DATA_TEXT, StudentRecords.STUDENT_SELECTED + "=?", new String[]{"1"});
+        database2.close();
+        return c;
+    }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
@@ -192,10 +203,15 @@ public class DataContentProvider extends ContentProvider {
                         selectionArgs);
                 break;
             case TEXT_UPDATE_SCORE_STUDENTS:
-                rowsUpdated = 0;
-                sqlDB.execSQL("UPDATE " + StudentRecords.TABLE_DATA_TEXT + " SET " + StudentRecords.STUDENT_SCORE + " = " + StudentRecords.STUDENT_SCORE + values.get(StudentRecords.STUDENT_SCORE) + selection, selectionArgs);
-                break;
-
+                try {
+                    rowsUpdated = 0;
+                    String query = "UPDATE " + StudentRecords.TABLE_DATA_TEXT + " SET " + StudentRecords.STUDENT_SCORE + " =" + StudentRecords.STUDENT_SCORE + "+" +values.get(StudentRecords.STUDENT_SCORE) + " WHERE " + StudentRecords.TEAM_NUMBER + "=?";
+                    sqlDB.execSQL(query, selectionArgs);
+                    break;
+                }
+                catch (Exception e){
+                    Logging.logException("Exception", e, CommonLibs.Priority.LOW);
+                }
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }

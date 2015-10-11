@@ -3,6 +3,7 @@ package com.project.quiz.adapters;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +16,14 @@ import android.widget.TextView;
 
 import com.project.quiz.R;
 import com.project.quiz.contentprovider.DataContentProvider;
+import com.project.quiz.customClasses.CustomNumberPicker;
 import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentSelectStudents;
 import com.project.quiz.interfaces.DialogBoxListener;
+import com.project.quiz.interfaces.NumberPickerListener;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,16 +31,23 @@ import butterknife.ButterKnife;
 /**
  * Created by Shitij on 27/09/15.
  */
-public class CustomStudentEditCursorAdapter extends SimpleCursorAdapter {
+public class CustomStudentEditCursorAdapter extends SimpleCursorAdapter{
     public Context context;
     private int layout;
     private DialogBoxListener listener;
+    private HashMap<String, Integer> studentScores;
+    private CustomStudentEditCursorAdapter adapter;
 
     public CustomStudentEditCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
         this.context = context;
         this.layout = layout;
+        studentScores = new HashMap<>();
         listener = (DialogBoxListener)context;
+    }
+
+    public void getInstance(CustomStudentEditCursorAdapter adapter){
+        this.adapter = adapter;
     }
 
     @Override
@@ -49,23 +61,15 @@ public class CustomStudentEditCursorAdapter extends SimpleCursorAdapter {
         final String student_id = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_ID));
         holder.studentName.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_NAME)));
         holder.studentPosition.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.COLUMN_ID)));
-        int score = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_SCORE)));
+        final int score = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_SCORE)));
+        holder.studentScore.setText(String.valueOf(score));
+        studentScores.put(student_id, score);
 
-        if(score-100 <0) {
-            holder.studentScore.setMinValue(0);
-        }
-        else{
-            holder.studentScore.setMinValue(score - 100);
-        }
-        holder.studentScore.setMaxValue(score + 500);
-        holder.studentScore.setWrapSelectorWheel(false);
-
-        holder.studentScore.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        holder.studentScore.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                ContentValues values = new ContentValues();
-                values.put(StudentRecords.STUDENT_SCORE, i1);
-                context.getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI, values, StudentRecords.STUDENT_ID+ "=?", new String[]{student_id});
+            public void onClick(View view) {
+                CustomNumberPicker dialog = new CustomNumberPicker(context, score, student_id, adapter);
+                dialog.show();
             }
         });
         holder.studentDelete.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +79,14 @@ public class CustomStudentEditCursorAdapter extends SimpleCursorAdapter {
 
             }
         });
+    }
+
+    public HashMap<String, Integer> getStudentScores() {
+        return studentScores;
+    }
+
+    public void setStudentScores(int score, String id) {
+        studentScores.put(id, score);
     }
 
     @Override
@@ -91,7 +103,7 @@ public class CustomStudentEditCursorAdapter extends SimpleCursorAdapter {
         @Bind(R.id.student_name_field)
         TextView studentName;
         @Bind(R.id.student_score_field)
-        NumberPicker studentScore;
+        TextViewRegularFont studentScore;
         @Bind(R.id.student_delete_button)
         TextViewRegularFont studentDelete;
 

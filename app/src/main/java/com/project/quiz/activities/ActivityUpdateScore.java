@@ -27,6 +27,7 @@ import com.project.quiz.contentprovider.DataContentProvider;
 import com.project.quiz.database.StorePointsTable;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentDisplayScore;
+import com.project.quiz.fragments.FragmentDisplayScoreOfTeams;
 import com.project.quiz.interfaces.ChangeFragment;
 import com.project.quiz.interfaces.UpdateScoreCallback;
 import com.project.quiz.utils.CommonLibs;
@@ -42,14 +43,20 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
     private ArrayList<Integer> listOfCurrentScores;
     public static float currentPoints;
     private static int team = -1;
+    private String prevScore ="-1222";
+    private int teamSize =1;
     private Cursor mCursor;
 
     private int flag;
 
-    @Bind(R.id.toolbar) Toolbar toolbar;
-    @Bind(R.id.card_listView) RecyclerView listView;
-    @Bind(R.id.container) CoordinatorLayout container;
-    @Bind(R.id.appBarLayout) AppBarLayout appBarLayout;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.card_listView)
+    RecyclerView listView;
+    @Bind(R.id.container)
+    CoordinatorLayout container;
+    @Bind(R.id.appBarLayout)
+    AppBarLayout appBarLayout;
     private String numberOfTeams;
     private AppBarLayout.Behavior behavior;
 
@@ -81,14 +88,6 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
 //        CardScore teamCard = (CardScore)adapterView.getItemAtPosition(i);
 //        Snackbar.make(findViewById(R.id.container),"Hello",Snackbar.LENGTH_INDEFINITE);
 //    }
-
-    private void insertTeams(String team) {
-        ContentValues value = new ContentValues();
-        value.put(StorePointsTable.TEAM_NUMBER, team);
-        value.put(StorePointsTable.CURRENT_SCORE, 0);
-        value.put(StorePointsTable.CHANGED_SCORE, 0);
-        getContentResolver().insert(DataContentProvider.CONTENT_STORE_URI, value);
-    }
 
     private void updateTeams(String team, float points) {
         ContentValues value = new ContentValues();
@@ -133,10 +132,11 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_display_scores) {
-            loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_STUDENTS, null);
+            loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_TEAM_SCORES, null);
             return true;
         } else if (id == R.id.action_finish) {
-            flag =0;
+            flag = 0;
+//            listOfCurrentScores = new ArrayList<>();
             getLoaderManager().initLoader(2, null, this);
             Intent intent = new Intent(this, ActivityHomeScreen.class);
             startActivity(intent);
@@ -152,7 +152,7 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
         ActivityUpdateScore.team = team;
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
         behavior = (AppBarLayout.Behavior) params.getBehavior();
-        if(behavior!=null) {
+        if (behavior != null) {
             behavior.onNestedFling(container, appBarLayout, null, 0, -5000, false);
             appBarLayout.requestLayout();
         }
@@ -163,7 +163,7 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
         appBarLayout.setExpanded(false);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
         behavior = (AppBarLayout.Behavior) params.getBehavior();
-        if(behavior!=null) {
+        if (behavior != null) {
             behavior.onNestedFling(container, appBarLayout, null, 0, 5000, true);
         }
     }
@@ -171,6 +171,12 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
+        if (id == 5) {
+            CursorLoader cl = null;
+            String[] projection = {StudentRecords.STUDENT_ID, StudentRecords.TEAM_NUMBER, StudentRecords.STUDENT_SCORE};
+            cl = new CursorLoader(this, DataContentProvider.CONTENT_STORE_STUDENTS_URI, projection, null, null, null);
+            return cl;
+        }
         if (id == 0 || id == 3 || id == 1) {
             CursorLoader cl = null;
             String[] projection = {StorePointsTable.COLUMN_ID, StorePointsTable.CURRENT_SCORE, StorePointsTable.CHANGED_SCORE, StorePointsTable.TEAM_NUMBER};
@@ -179,8 +185,8 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
         }
         if (id == 2) {
             CursorLoader cl = null;
-            String[] projection = {StorePointsTable.COLUMN_ID, StorePointsTable.CURRENT_SCORE, StorePointsTable.TEAM_NUMBER};
-            cl = new CursorLoader(this, DataContentProvider.CONTENT_STORE_URI, projection, null, null, null);
+            String[] projection = {StorePointsTable.COLUMN_ID, StorePointsTable.TEAM_NUMBER, StorePointsTable.CURRENT_SCORE};
+            cl = new CursorLoader(this, DataContentProvider.CONTENT_STORE_URI, projection, null, null, StorePointsTable.CURRENT_SCORE + " desc");
             return cl;
         } else {
             return null;
@@ -197,7 +203,7 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
                     ++flag;
                     ContentValues value = new ContentValues();
                     value.put(StorePointsTable.CHANGED_SCORE, 0);
-                    value.put(StorePointsTable.CURRENT_SCORE, Float.parseFloat(cursor.getString(cursor.getColumnIndexOrThrow(StorePointsTable.CURRENT_SCORE))) + Float.parseFloat(cursor.getString(cursor.getColumnIndexOrThrow(StorePointsTable.CHANGED_SCORE))));
+                    value.put(StorePointsTable.CURRENT_SCORE, Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(StorePointsTable.CURRENT_SCORE))) + Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(StorePointsTable.CHANGED_SCORE))));
 //                            v[flag++] = value;
                     getContentResolver().update(DataContentProvider.CONTENT_STORE_URI, value, StorePointsTable.TEAM_NUMBER + "=?", new String[]{cursor.getString(cursor.getColumnIndex(StorePointsTable.TEAM_NUMBER))});
                 }
@@ -205,16 +211,33 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
                 queryData();
             }
         } else if (loader.getId() == 2) {
+            teamSize = cursor.getCount();
             if (flag == 0) {
                 String d = DatabaseUtils.dumpCursorToString(cursor);
                 while (cursor.moveToNext()) {
+//                    listOfCurrentScores.add(cursor.getInt(cursor.getColumnIndex(StorePointsTable.TEAM_NUMBER)));
                     ++flag;
-                    ContentValues value = new ContentValues();
-                    value.put(StudentRecords.STUDENT_SCORE, Float.parseFloat(cursor.getString(cursor.getColumnIndex(StorePointsTable.CURRENT_SCORE))));
-                    getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI, value, StudentRecords.TEAM_NUMBER + "=?", new String[]{cursor.getString(cursor.getColumnIndex(StorePointsTable.TEAM_NUMBER))});
+                    if (cursor.getPosition() != 0 && !cursor.getString(cursor.getColumnIndex(StorePointsTable.CURRENT_SCORE)).equalsIgnoreCase(prevScore)) {
+                        teamSize--;
+                    }
+                        ContentValues value = new ContentValues();
+                        value.put(StudentRecords.STUDENT_SCORE, teamSize * 2);
+                        getContentResolver().update(DataContentProvider.CONTENT_UPDATE_SCORE_STUDENTS_URI, value, null, new String[]{cursor.getString(cursor.getColumnIndex(StorePointsTable.TEAM_NUMBER))});
+                    prevScore = cursor.getString(cursor.getColumnIndex(StorePointsTable.CURRENT_SCORE));
                 }
-                getContentResolver().notifyChange(DataContentProvider.CONTENT_STORE_STUDENTS_URI, null);
+//                getLoaderManager().initLoader(5, null, this);
+//                getContentResolver().notifyChange(DataContentProvider.CONTENT_UPDATE_SCORE_STUDENTS_URI, null);
             }
+//        }
+// else if (loader.getId() == 5) {
+//            String d = DatabaseUtils.dumpCursorToString(cursor);
+//            for (int i = listOfCurrentScores.size(); i > 0; i--) {
+//                cursor.moveToNext();
+//                ContentValues value = new ContentValues();
+//                String score = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_SCORE));
+//                value.put(StudentRecords.STUDENT_SCORE, Integer.parseInt(score) + (i * 2));
+//                getContentResolver().update(DataContentProvider.CONTENT_UPDATE_SCORE_STUDENTS_URI, value, StudentRecords.TEAM_NUMBER + "=?", new String[]{String.valueOf(i)});
+//            }
         } else {
             cardArrayAdapter.swapCursor(cursor);
 //            String d = DatabaseUtils.dumpCursorToString(cursor);
@@ -234,8 +257,8 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
 
     @Override
     public void loadFragment(int id, Bundle bundle) {
-        if (id == CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_STUDENTS) {
-            FragmentDisplayScore display = new FragmentDisplayScore();
+        if (id == CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_TEAM_SCORES) {
+            FragmentDisplayScoreOfTeams display = new FragmentDisplayScoreOfTeams();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, display, "FragmentDisplayScore").addToBackStack("FragmentDisplayScore").commit();
         }

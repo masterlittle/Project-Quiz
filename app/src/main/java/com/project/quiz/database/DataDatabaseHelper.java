@@ -12,7 +12,7 @@ import com.project.quiz.utils.CommonLibs;
  */
 public class DataDatabaseHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "quizapp.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     public DataDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

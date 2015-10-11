@@ -15,6 +15,9 @@ import com.project.quiz.R;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentSelectStudents;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -24,12 +27,15 @@ import butterknife.ButterKnife;
 public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
     public Context context;
     private int layout;
+    public HashMap<String, Integer> selectedStudents = new HashMap<>();
+    public ArrayList<String> selectedStudentList = new ArrayList<>();
 
-    public CustomSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
+    public CustomSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags, HashMap<String, Integer> selectedStudents, ArrayList<String> selectedStudentList) {
         super(context, layout, c, from, to, flags);
         this.context = context;
         this.layout = layout;
-
+        this.selectedStudents = selectedStudents;
+        this.selectedStudentList = selectedStudentList;
     }
 
     @Override
@@ -43,8 +49,8 @@ public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
 
         holder = (ViewHolder)view.getTag();
         String student_id = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_ID));
-        FragmentSelectStudents.selectedStudents.put(holder.studentId.getText().toString(), 1);
-        FragmentSelectStudents.selectedStudentList.add(student_id);
+        selectedStudents.put(student_id, 1);
+        selectedStudentList.add(student_id);
         holder.studentId.setText(student_id);
         holder.studentName.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_NAME)));
         holder.studentPosition.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.COLUMN_ID)));
@@ -58,7 +64,7 @@ public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
                 if(finalHolder.studentCheckbox.isChecked()){
                     checked =1;
                 }
-                FragmentSelectStudents.selectedStudents.put(finalHolder.studentId.getText().toString(), checked);
+                selectedStudents.put(finalHolder.studentId.getText().toString(), checked);
             }
         });
     }

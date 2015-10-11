@@ -22,8 +22,8 @@ public class StorePointsTable {
             + "("
             + COLUMN_ID + " integer primary key autoincrement, "
             + TEAM_NUMBER + " text not null unique, "
-            + CURRENT_SCORE + " float, "
-            + CHANGED_SCORE + " float "
+            + CURRENT_SCORE + " int, "
+            + CHANGED_SCORE + " int "
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {
