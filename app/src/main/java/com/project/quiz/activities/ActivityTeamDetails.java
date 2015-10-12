@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -20,10 +21,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ActivityTeamDetails extends AppCompatActivity {
-    @Bind(R.id.edit_quiz_tag)
-    EditText editQuizTag;
-    @Bind(R.id.quiz_tag_layout)
-    TextInputLayout quizTagLayout;
+    @Bind(R.id.edit_quiz_tag) EditText editQuizTag;
+    @Bind(R.id.quiz_tag_layout) TextInputLayout quizTagLayout;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+
     @OnClick(R.id.button_next)
     public void onClick(){
         emptyDatabase();
@@ -61,6 +62,8 @@ public class ActivityTeamDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_details);
         ButterKnife.bind(this);
+        toolbar.setTitle("Home");
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -72,15 +75,13 @@ public class ActivityTeamDetails extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        if (id == R.id.swapStudents) {
+            Intent intent = new Intent(this, ActivitySwapStudentsTeams.class);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

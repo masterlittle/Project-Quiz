@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ActivityUpdateScore">
+    <item
+        android:id="@+id/swapStudents"
+        android:title="Swap students in teams"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_display_scores"

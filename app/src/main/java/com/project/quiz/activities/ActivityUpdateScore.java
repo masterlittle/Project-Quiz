@@ -149,6 +149,12 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
             finish();
             return true;
         }
+        else if (id == R.id.swapStudents) {
+            Intent intent = new Intent(this, ActivitySwapStudentsTeams.class);
+            intent.putExtra("teams", numberOfTeams);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

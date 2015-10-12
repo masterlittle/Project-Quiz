@@ -20,11 +20,13 @@
         <activity
             android:name=".activities.ActivityTeamDetails"
             android:label="@string/title_activity_activity_team_details" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".activities.ActivityAddStudentRecords"
@@ -36,12 +38,16 @@
         </activity>
         <activity
             android:name=".activities.ActivityHomeScreen"
-            android:label="Let's Quiz!" >
+            android:label="Let&apos;s Quiz!" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.ActivitySwapStudentsTeams"
+            android:label="@string/title_activity_activity_swap_students_teams" >
         </activity>
     </application>
 
