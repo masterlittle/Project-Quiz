@@ -3,6 +3,7 @@
     package="com.project.quiz" >
 
     <application
+        android:name=".activities.QuizApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,6 +13,9 @@
             android:authorities="com.project.quiz.contentprovider"
             android:exported="false" >
         </provider>
+        <provider
+            android:name=".extendedcalendarview.CalendarProvider"
+            android:authorities="com.project.quiz.extendedcalendarview.calendarprovider" />
 
         <activity
             android:name=".activities.ActivityUpdateScore"
@@ -46,8 +50,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:name=".activities.ActivitySwapStudentsTeams"
             android:label="@string/title_activity_activity_swap_students_teams" >
+        </activity>
+        <activity
+            android:parentActivityName=".activities.ActivityHomeScreen"
+            android:name=".activities.ActivityEvents"
+            android:label="@string/title_activity_activity_events" >
         </activity>
     </application>
 

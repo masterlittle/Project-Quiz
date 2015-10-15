@@ -1,13 +1,28 @@
 package com.project.quiz.fragments;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.project.quiz.R;
+import com.project.quiz.extendedcalendarview.CalendarProvider;
+import com.project.quiz.extendedcalendarview.Day;
+import com.project.quiz.extendedcalendarview.Event;
+import com.project.quiz.extendedcalendarview.ExtendedCalendarView;
+
+import java.util.Calendar;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class FragmentHomeScreen extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -19,15 +34,7 @@ public class FragmentHomeScreen extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentHomeScreen.
-     */
+    @Bind(R.id.calendar) ExtendedCalendarView calendarView;
     // TODO: Rename and change types and number of parameters
     public static FragmentHomeScreen newInstance(String param1, String param2) {
         FragmentHomeScreen fragment = new FragmentHomeScreen();
@@ -49,13 +56,17 @@ public class FragmentHomeScreen extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_screen, container, false);
+        View v = inflater.inflate(R.layout.fragment_home_screen, container, false);
+        ButterKnife.bind(this, v);
+
+        return v;
     }
 
     @Override
@@ -66,6 +77,12 @@ public class FragmentHomeScreen extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        ButterKnife.unbind(this);
+        super.onDestroyView();
     }
 
     @Override

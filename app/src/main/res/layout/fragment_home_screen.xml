@@ -3,35 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryLight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.project.quiz.fragments.FragmentHomeScreen">
 
-    <!-- TODO: Update blank fragment layout -->
-    <com.project.quiz.customviews.TextViewRegularFont
-        android:textSize="22sp"
-        android:textColor="@color/colorTextDark"
+    <com.project.quiz.customviews.TextViewBoldFont
+        android:textSize="@dimen/font_size_xxlarge"
+        android:text="HOLA!"
         android:gravity="center"
-        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/message1" />
-    <com.project.quiz.customviews.TextViewRegularFont
-        android:textSize="22sp"
-        android:textColor="@color/colorTextDark"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/message2" />
-    <com.project.quiz.customviews.TextViewRegularFont
-        android:textSize="22sp"
-        android:textColor="@color/colorTextDark"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/message3" />
+        android:layout_height="wrap_content" />
+
+    <com.project.quiz.extendedcalendarview.ExtendedCalendarView
+        android:id="@+id/calendar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
 
 </LinearLayout>

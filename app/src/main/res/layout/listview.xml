@@ -194,19 +194,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="16dp"
         android:src="@drawable/card_background"
         app:layout_anchor="@id/card_listView"
         app:layout_anchorGravity="bottom|right|end" />
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/fab"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--app:layout_anchor="@id/appbar"-->
-    <!--app:layout_anchorGravity="bottom"-->
-    <!--app:borderWidth="0dp"-->
-    <!--android:layout_margin="3dp"-->
-    <!--android:src="@color/color_red" />-->
 
 </android.support.design.widget.CoordinatorLayout>

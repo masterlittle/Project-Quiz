@@ -1,0 +1,126 @@
+<ScrollView
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/colorPrimary"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.project.quiz.fragments.FragmentAddEvents">
+
+<android.support.design.widget.TextInputLayout
+    android:id="@+id/event_title_layout"
+    android:layout_marginTop="@dimen/padding_custom_10dp"
+    android:textColorHint="@color/colorPrimaryLight"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+    <com.project.quiz.customviews.EditTextRegularFont
+        android:id="@+id/event_title_field"
+        android:textColor="@color/colorPrimaryLight"
+        android:hint="Event Title"
+        android:inputType="textCapSentences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/event_desc_layout"
+        android:layout_marginTop="@dimen/padding_custom_10dp"
+        android:textColorHint="@color/colorPrimaryLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:id="@+id/event_desc_field"
+            android:textColor="@color/colorPrimaryLight"
+            android:hint="Event Description"
+            android:inputType="textCapSentences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/event_location_layout"
+        android:layout_marginTop="@dimen/padding_custom_10dp"
+        android:textColorHint="@color/colorPrimaryLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:id="@+id/event_location_field"
+            android:textColor="@color/colorPrimaryLight"
+            android:hint="Location"
+            android:inputType="textCapSentences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/padding_custom_10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:textSize="@dimen/font_size_large"
+            android:text="Event starts:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryLight" />
+        <DatePicker
+            android:layout_gravity="center"
+            android:datePickerMode="spinner"
+            android:layout_marginTop="@dimen/padding_custom_10dp"
+            android:id="@+id/datePicker"
+            android:calendarViewShown="false"
+            android:headerBackground="@color/colorPrimary"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"/>
+        <TimePicker
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:id="@+id/timePicker"
+            android:numbersTextColor="@color/colorPrimaryLight" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:textSize="@dimen/font_size_large"
+            android:text="Event ends:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryLight" />
+        <DatePicker
+            android:calendarTextColor="@color/colorPrimaryLight"
+            android:layout_gravity="center"
+            android:datePickerMode="spinner"
+            android:layout_marginTop="@dimen/padding_custom_10dp"
+            android:id="@+id/datePickerEnd"
+            android:calendarViewShown="false"
+            android:headerBackground="@color/colorPrimary"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"/>
+        <TimePicker
+            android:calendarTextColor="@color/colorPrimaryLight"
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:id="@+id/timePickerEnd"
+            android:numbersTextColor="@color/colorPrimaryLight" />
+    </LinearLayout>
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:id="@+id/button_confirm"
+        android:text="Confirm"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_xlarge"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorPrimaryLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+</ScrollView>

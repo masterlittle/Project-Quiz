@@ -23,6 +23,8 @@ import butterknife.OnClick;
 public class ActivityTeamDetails extends AppCompatActivity {
     @Bind(R.id.edit_quiz_tag) EditText editQuizTag;
     @Bind(R.id.quiz_tag_layout) TextInputLayout quizTagLayout;
+    @Bind(R.id.edit_quizmaster) EditText editQuizMaster;
+    @Bind(R.id.quizmaster_layout) TextInputLayout quizMasterLayout;
     @Bind(R.id.toolbar) Toolbar toolbar;
 
     @OnClick(R.id.button_next)
@@ -30,7 +32,10 @@ public class ActivityTeamDetails extends AppCompatActivity {
         emptyDatabase();
         if(editQuizTag.getText().length() <=0){
             quizTagLayout.setError("Please enter the quiz tag");
-        }else {
+        }
+        else if(editQuizMaster.getText().length() <= 0){
+            quizMasterLayout.setError("Please enter the name of the Quizmaster");
+        } else{
             SharedPreferences preferences = getSharedPreferences(getPackageName(), MODE_PRIVATE);
             insertTeams(preferences.getString(CommonLibs.SharedPrefsKeys.TEAM_NUMBER, "0"));
             Intent intent = new Intent(this, ActivityUpdateScore.class);

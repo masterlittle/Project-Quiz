@@ -66,13 +66,17 @@ public class ActivitySelectTeams extends AppCompatActivity implements DialogBoxL
     @Override
     public void loadFragment(int id, Bundle bundle) {
         if (id == CommonLibs.FragmentId.ID_FRAGMENT_SELECT_STUDENTS) {
-            FragmentSelectStudents fragmentSelectStudents = new FragmentSelectStudents();
-            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container, fragmentSelectStudents, "FRAGMENT_SELECT_STUDENTS").commit();
+            if(!isDestroyed()) {
+                FragmentSelectStudents fragmentSelectStudents = new FragmentSelectStudents();
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, fragmentSelectStudents, "FRAGMENT_SELECT_STUDENTS").commit();
+            }
         } else if (id == CommonLibs.FragmentId.ID_FRAGMENT_DISTRIBUTE_STUDENTS) {
-            FragmentDistributeTeams fragmentDistributeTeams = new FragmentDistributeTeams();
-            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container, fragmentDistributeTeams, "FRAGMENT_DISTRIBUTE_STUDENTS").addToBackStack("FRAGMENT_DISTRIBUTE_STUDENTS").commit();
+            if(!isDestroyed()) {
+                FragmentDistributeTeams fragmentDistributeTeams = new FragmentDistributeTeams();
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, fragmentDistributeTeams, "FRAGMENT_DISTRIBUTE_STUDENTS").addToBackStack("FRAGMENT_DISTRIBUTE_STUDENTS").commit();
+            }
         }
     }
 

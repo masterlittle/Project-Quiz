@@ -1,0 +1,41 @@
+<LinearLayout
+    android:animateLayoutChanges="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.project.quiz.fragments.FragmentUpcomingEvents">
+
+    <com.project.quiz.customviews.IconTextView
+        android:id="@+id/noeventIcon"
+        android:visibility="gone"
+        android:textColor="@color/orange_e96125"
+        android:textSize="@dimen/font_size_large"
+        android:gravity="center"
+        android:text="@string/icon_referral"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:id="@+id/noeventText"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryLight"
+        android:text="You don't have any upcoming events"
+        android:textSize="@dimen/font_size_xlarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:elevation="5dp"
+        android:divider="@color/colorPrimaryLight"
+        android:dividerHeight="2dp"
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

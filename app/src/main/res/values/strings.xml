@@ -33,4 +33,15 @@
     <string name="message3"> Create a team and keep Live scores!</string>
     <string name="instructions">Click on a team and adjust the scores. You can change score of multiple teams in one go. Press the action button to commit all changes. Click Finish on the menu button to finish and commit scores to league. Do NOT press back in between.</string>
     <string name="title_activity_activity_swap_students_teams">ActivitySwapStudentsTeams</string>
+
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="sunday">SUN</string>
+    <string name="title_activity_activity_events">ActivityEvents</string>
+    <string name="events">Upcoming Events</string>
+    <string name="reset">Reset Scores</string>
 </resources>

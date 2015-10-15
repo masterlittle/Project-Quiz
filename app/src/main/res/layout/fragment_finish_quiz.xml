@@ -1,0 +1,53 @@
+<RelativeLayout
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryLight"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.project.quiz.fragments.FragmentFinishQuiz">
+
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:id="@+id/button_finishQuizAndRestart"
+        android:textColor="@color/colorPrimaryLight"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_large"
+        android:background="@color/colorPrimaryDark"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:text="Finish this quiz and start another quiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.project.quiz.customviews.TextViewBoldFont
+        android:layout_below="@+id/button_finishQuizAndRestart"
+        android:id="@+id/quizmasterText"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:text="Select quizmaster for the quiz that finished"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:padding="@dimen/padding_custom_10dp"
+        android:background="@color/colorPrimary"
+        android:layout_above="@+id/button_finishQuizandClose"
+        android:layout_below="@+id/quizmasterText"
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:textSize="@dimen/font_size_large"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/button_finishQuizandClose"
+        android:textColor="@color/colorPrimaryLight"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:text="Finish this quiz and go to home screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

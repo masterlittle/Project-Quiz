@@ -31,6 +31,7 @@ import com.project.quiz.database.StorePointsTable;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentDisplayScore;
 import com.project.quiz.fragments.FragmentDisplayScoreOfTeams;
+import com.project.quiz.fragments.FragmentFinishQuiz;
 import com.project.quiz.interfaces.ChangeFragment;
 import com.project.quiz.interfaces.UpdateScoreCallback;
 import com.project.quiz.utils.CommonLibs;
@@ -111,8 +112,6 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
         toolbar.setTitle("Update Scores");
         setSupportActionBar(toolbar);
 
-        numberOfTeams = getIntent().getStringExtra("numberOfTeams");
-
         cardArrayAdapter = new CardArrayAdapter(this, mCursor);
 
         listView.setLayoutManager(new LinearLayoutManager(this));
@@ -144,15 +143,22 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
             flag = 0;
 //            listOfCurrentScores = new ArrayList<>();
             getLoaderManager().initLoader(2, null, this);
-            Intent intent = new Intent(this, ActivityHomeScreen.class);
-            startActivity(intent);
-            finish();
+            loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_FINISH_QUIZ, null);
             return true;
         }
         else if (id == R.id.swapStudents) {
             Intent intent = new Intent(this, ActivitySwapStudentsTeams.class);
             intent.putExtra("teams", numberOfTeams);
             startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.action_reset) {
+            ContentValues value = new ContentValues();
+            value.put(StorePointsTable.CHANGED_SCORE, 0);
+            value.put(StorePointsTable.CURRENT_SCORE, 0);
+            getContentResolver().update(DataContentProvider.CONTENT_STORE_URI, value, null, null);
+            getContentResolver().notifyChange(DataContentProvider.CONTENT_STORE_URI, null);
+
             return true;
         }
 
@@ -237,25 +243,13 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
                         getContentResolver().update(DataContentProvider.CONTENT_UPDATE_SCORE_STUDENTS_URI, value, null, new String[]{cursor.getString(cursor.getColumnIndex(StorePointsTable.TEAM_NUMBER))});
                     prevScore = cursor.getString(cursor.getColumnIndex(StorePointsTable.CURRENT_SCORE));
                 }
-//                getLoaderManager().initLoader(5, null, this);
-//                getContentResolver().notifyChange(DataContentProvider.CONTENT_UPDATE_SCORE_STUDENTS_URI, null);
             }
-//        }
-// else if (loader.getId() == 5) {
-//            String d = DatabaseUtils.dumpCursorToString(cursor);
-//            for (int i = listOfCurrentScores.size(); i > 0; i--) {
-//                cursor.moveToNext();
-//                ContentValues value = new ContentValues();
-//                String score = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_SCORE));
-//                value.put(StudentRecords.STUDENT_SCORE, Integer.parseInt(score) + (i * 2));
-//                getContentResolver().update(DataContentProvider.CONTENT_UPDATE_SCORE_STUDENTS_URI, value, StudentRecords.TEAM_NUMBER + "=?", new String[]{String.valueOf(i)});
-//            }
+
         } else {
+            numberOfTeams = String.valueOf(cursor.getCount());
             cardArrayAdapter.swapCursor(cursor);
-//            String d = DatabaseUtils.dumpCursorToString(cursor);
             cardArrayAdapter.notifyDataSetChanged();
         }
-//        mCursor = cursor;
     }
 
     private void queryData() {
@@ -273,6 +267,11 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
             FragmentDisplayScoreOfTeams display = new FragmentDisplayScoreOfTeams();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, display, "FragmentDisplayScore").addToBackStack("FragmentDisplayScore").commit();
+        }
+        if (id == CommonLibs.FragmentId.ID_FRAGMENT_FINISH_QUIZ) {
+            FragmentFinishQuiz display = new FragmentFinishQuiz();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container, display, "FragmentFinishQuiz").addToBackStack("FragmentFinishQuiz").commit();
         }
     }
 

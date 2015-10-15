@@ -1,69 +1,102 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:orientation="vertical">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/tool_bar"/>
+    android:fillViewport="true">
+
     <LinearLayout
-        android:layout_margin="16dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <com.project.quiz.customviews.TextViewBoldFont
-        android:textColor="@color/colorPrimaryLight"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:textSize="24sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Instructions"/>
-    <com.project.quiz.customviews.TextViewRegularFont
-        android:textSize="@dimen/font_size_large"
-        android:gravity="left"
-        android:paddingBottom="50dp"
-        android:textColor="@color/colorPrimaryLight"
-        android:text="@string/instructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <com.project.quiz.customviews.TextViewBoldFont
-        android:textColor="@color/colorPrimaryLight"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Quiz Tag"/>
+        android:orientation="vertical">
 
-   <android.support.design.widget.TextInputLayout
-       android:textColorHint="@color/colorPrimaryLight"
-       android:layout_marginBottom="@dimen/activity_vertical_margin"
-       android:layout_gravity="center"
-       android:id="@+id/quiz_tag_layout"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-       <EditText
-           android:textColor="@color/colorPrimaryLight"
-           android:inputType="textCapSentences"
-           android:id="@+id/edit_quiz_tag"
-           android:hint="Enter quiz tag"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content" />
-   </android.support.design.widget.TextInputLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/tool_bar" />
 
-    <com.project.quiz.customviews.TextViewRegularFont
-        android:elevation="5dp"
-        android:id="@+id/button_next"
-        android:text="Next"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:textColor="@color/colorPrimary"
-        android:background="@color/colorPrimaryLight"
-        android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:text="Instructions"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="24sp" />
+
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/instructions"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/font_size_medium" />
+
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="QuizMaster"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="24sp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_margin="16dp"
+            android:id="@+id/quizmaster_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:textColorHint="@color/colorPrimaryLight">
+
+            <EditText
+                android:id="@+id/edit_quizmaster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quizmaster"
+                android:inputType="textCapSentences"
+                android:textColor="@color/colorPrimaryLight" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Quiz Tag"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="24sp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_margin="16dp"
+            android:id="@+id/quiz_tag_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:textColorHint="@color/colorPrimaryLight">
+
+            <EditText
+                android:id="@+id/edit_quiz_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter quiz tag"
+                android:inputType="textCapSentences"
+                android:textColor="@color/colorPrimaryLight" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:layout_margin="16dp"
+            android:id="@+id/button_next"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorPrimaryLight"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:text="Next"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp" />
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

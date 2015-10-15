@@ -53,6 +53,7 @@ public class CommonLibs {
         public static int ID_FRAGMENT_HOME_SCREEN=4;
         public static int ID_FRAGMENT_DISTRIBUTE_STUDENTS=5;
         public static int ID_FRAGMENT_DISPLAY_TEAM_SCORES=6;
+        public static int ID_FRAGMENT_FINISH_QUIZ=7;
     }
 
     public static class SharedPrefsKeys{

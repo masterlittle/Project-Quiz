@@ -3,6 +3,7 @@ package com.project.quiz.activities;
 import android.app.LoaderManager;
 import android.content.ClipData;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -59,7 +61,7 @@ public class ActivitySwapStudentsTeams extends AppCompatActivity implements Numb
 
         toolbar.setTitle("Swap students");
         setSupportActionBar(toolbar);
-        String numberOfTeam = getIntent().getStringExtra("team");
+        String numberOfTeam = getIntent().getStringExtra("teams");
 
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(Integer.parseInt(numberOfTeam));

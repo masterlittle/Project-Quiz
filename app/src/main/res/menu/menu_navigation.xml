@@ -17,5 +17,10 @@
             android:id="@+id/displayScores"
             android:checked="false"
             android:title="@string/displayLeagueStandings" />
-        </group>
-    </menu>
+
+        <item
+            android:id="@+id/events"
+            android:checked="false"
+            android:title="@string/events" />
+    </group>
+</menu>

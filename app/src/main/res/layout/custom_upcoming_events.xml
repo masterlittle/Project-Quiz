@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:paddingRight="@dimen/padding_custom_10dp"
+    android:elevation="3dp"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.project.quiz.customviews.TextViewBoldFont
+        android:id="@+id/eventTitle"
+        android:text="Panache"
+        android:layout_weight="5"
+        android:padding="16dp"
+        android:textSize="@dimen/font_size_xxlarge"
+        android:textColor="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+        <com.project.quiz.customviews.IconTextView
+            android:id="@+id/eventDelete"
+            android:paddingRight="20dp"
+            android:textSize="@dimen/font_size_xlarge"
+            android:textColor="@color/orange_e96125"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:text="@string/icon_delete"
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/padding_custom_10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.project.quiz.customviews.IconTextView
+            android:layout_weight="0.83"
+            android:gravity="left"
+            android:text="@string/icon_book"
+            android:padding="16dp"
+            android:textSize="@dimen/font_size_xlarge"
+            android:textColor="@color/orange_e96125"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:layout_weight="5.2"
+            android:id="@+id/eventDescription"
+            android:gravity="left"
+            android:text="Description"
+            android:padding="16dp"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/colorPrimaryLighter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.project.quiz.customviews.IconTextView
+            android:padding="16dp"
+            android:gravity="left"
+            android:text="@string/icon_location"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/orange_e96125"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:padding="16dp"
+            android:gravity="left"
+            android:text="Location: "
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/colorPrimaryLight"
+            android:layout_weight="1.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:id="@+id/eventLocationText"
+            android:padding="16dp"
+            android:gravity="left"
+            android:text="Location: "
+            android:textSize="@dimen/font_size_medium"
+            android:textColor="@color/colorPrimaryLighter"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/padding_custom_10dp"
+        android:layout_margin="@dimen/padding_custom_10dp"
+        android:orientation="horizontal"
+        android:id="@+id/locationContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.project.quiz.customviews.IconTextView
+            android:padding="16dp"
+            android:gravity="left"
+            android:text="@string/icon_clock"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/orange_e96125"
+            android:layout_weight="0.65"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:padding="16dp"
+            android:gravity="left"
+            android:text="Time "
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/colorPrimaryLight"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.project.quiz.customviews.IconTextView
+                android:padding="16dp"
+                android:gravity="left"
+                android:textSize="@dimen/font_size_large"
+                android:textColor="@color/colorPrimaryLight"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <com.project.quiz.customviews.TextViewRegularFont
+                android:padding="16dp"
+                android:gravity="left"
+                android:text="Starts at:  "
+                android:textSize="@dimen/font_size_large"
+                android:textColor="@color/colorPrimaryLight"
+                android:layout_weight="1.3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <com.project.quiz.customviews.TextViewRegularFont
+                android:id="@+id/eventStartTime"
+                android:padding="16dp"
+                android:gravity="left"
+                android:text="Time: "
+                android:textSize="@dimen/font_size_medium"
+                android:textColor="@color/colorPrimaryLighter"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.project.quiz.customviews.IconTextView
+                android:padding="16dp"
+                android:gravity="left"
+                android:textSize="@dimen/font_size_large"
+                android:textColor="@color/colorPrimaryLight"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <com.project.quiz.customviews.TextViewRegularFont
+                android:padding="16dp"
+                android:gravity="left"
+                android:text="Ends at:  "
+                android:textSize="@dimen/font_size_large"
+                android:textColor="@color/colorPrimaryLight"
+                android:layout_weight="1.3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <com.project.quiz.customviews.TextViewRegularFont
+                android:id="@+id/eventEndTime"
+                android:padding="16dp"
+                android:gravity="left"
+                android:text="Time: "
+                android:textSize="@dimen/font_size_medium"
+                android:textColor="@color/colorPrimaryLighter"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

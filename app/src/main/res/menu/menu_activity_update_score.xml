@@ -15,6 +15,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_reset"
+        android:title="@string/reset"
+        android:orderInCategory="2"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_finish"
         android:title="@string/finish"
         android:orderInCategory="2"

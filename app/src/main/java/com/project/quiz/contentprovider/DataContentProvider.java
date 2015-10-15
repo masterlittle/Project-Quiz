@@ -35,12 +35,14 @@ public class DataContentProvider extends ContentProvider {
     private static final int TEXT_DATA_DELETE = 20;
     private static final int TEXT_DATA_BULK_INSERT = 30;
     private static final int TEXT_UPDATE_SCORE_STUDENTS = 50;
+    private static final int TEXT_UPDATE_SCORE_QUIZMASTER = 60;
 
     private static final String AUTHORITY = "com.project.quiz.contentprovider";
 
     private static final String BASE_PATH_STORE = "tablePoints";
     private static final String BASE_PATH_STORE_STUDENTS = "storeStudents";
     private static final String BASE_PATH_UPDATE_SCORE_STUDENTS = "updateScoreStudents";
+    private static final String BASE_PATH_UPDATE_SCORE_QUIZMASTER = "updateScoreQuizmaster";
     private static final String BASE_PATH_DELETE = "tableDelete";
     private static final String BASE_PATH_BULK_INSERT = "bulkInsert";
 
@@ -55,6 +57,9 @@ public class DataContentProvider extends ContentProvider {
 
     public static final Uri CONTENT_UPDATE_SCORE_STUDENTS_URI = Uri.parse("content://" + AUTHORITY
             + "/" + BASE_PATH_UPDATE_SCORE_STUDENTS);
+
+    public static final Uri CONTENT_UPDATE_SCORE_QUIZMASTER_URI = Uri.parse("content://" + AUTHORITY
+            + "/" + BASE_PATH_UPDATE_SCORE_QUIZMASTER);
 
     public static final Uri CONTENT_BULK_INSERT_URI = Uri.parse("content://" + AUTHORITY
             + "/" + BASE_PATH_BULK_INSERT);
@@ -71,6 +76,7 @@ public class DataContentProvider extends ContentProvider {
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_STORE, TEXT_STORE_DATA);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_STORE_STUDENTS, TEXT_STORE_STUDENTS);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_UPDATE_SCORE_STUDENTS, TEXT_UPDATE_SCORE_STUDENTS);
+        sURIMatcher.addURI(AUTHORITY, BASE_PATH_UPDATE_SCORE_QUIZMASTER, TEXT_UPDATE_SCORE_QUIZMASTER);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_BULK_INSERT, TEXT_DATA_BULK_INSERT);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH_DELETE, TEXT_DATA_DELETE);
     }
@@ -206,6 +212,17 @@ public class DataContentProvider extends ContentProvider {
                 try {
                     rowsUpdated = 0;
                     String query = "UPDATE " + StudentRecords.TABLE_DATA_TEXT + " SET " + StudentRecords.STUDENT_SCORE + " =" + StudentRecords.STUDENT_SCORE + "+" +values.get(StudentRecords.STUDENT_SCORE) + " WHERE " + StudentRecords.TEAM_NUMBER + "=?";
+                    sqlDB.execSQL(query, selectionArgs);
+                    break;
+                }
+                catch (Exception e){
+                    Logging.logException("Exception", e, CommonLibs.Priority.LOW);
+                }
+
+            case TEXT_UPDATE_SCORE_QUIZMASTER:
+                try {
+                    rowsUpdated = 0;
+                    String query = "UPDATE " + StudentRecords.TABLE_DATA_TEXT + " SET " + StudentRecords.STUDENT_SCORE + " =" + StudentRecords.STUDENT_SCORE + "+" +values.get(StudentRecords.STUDENT_SCORE) + " WHERE " + StudentRecords.STUDENT_ID + "=?";
                     sqlDB.execSQL(query, selectionArgs);
                     break;
                 }

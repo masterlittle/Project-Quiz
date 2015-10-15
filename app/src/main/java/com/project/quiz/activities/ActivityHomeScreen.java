@@ -118,6 +118,10 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
 //            startActivity(new Intent(this, ActivityTeamDetails.class));
             loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_STUDENTS, null);
         }
+        if(itemId == R.id.events){
+//            startActivity(new Intent(this, ActivityTeamDetails.class));
+            startActivity(new Intent(this, ActivityEvents.class));
+        }
     }
 
     @Override

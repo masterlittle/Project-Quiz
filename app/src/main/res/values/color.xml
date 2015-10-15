@@ -2,8 +2,11 @@
 <resources>
     <!--QUIZ COLOR PALETTES-->
     <color name="colorPrimary">#104547</color>
+    <color name="colorPrimaryTransparent">#66104547</color>
+    <color name="colorPrimaryTransparentDark">#AA104547</color>
     <color name="colorPrimaryDark">#10211A</color>
     <color name="colorPrimaryLight">#FFFFC7</color>
+    <color name="colorPrimaryLighter">#FAAFA9</color>
     <color name="colorPrimaryActionBar">#FCA258</color>
     <color name="colorTextDark">#FFFFC7</color>
 
