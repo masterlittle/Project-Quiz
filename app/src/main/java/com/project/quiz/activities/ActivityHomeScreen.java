@@ -150,9 +150,8 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
             ft.replace(R.id.frame, frag, "FragmentHomeScreen").commit();
         }
         else if(id == CommonLibs.FragmentId.ID_FRAGMENT_DISPLAY_STUDENTS){
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             FragmentDisplayScore displayScore = new FragmentDisplayScore();
-            fragmentTransaction.replace(R.id.frame, displayScore, "Display Score").addToBackStack("Display Score").commit();
+            getFragmentManager().beginTransaction().replace(R.id.frame, displayScore, "Display Score").addToBackStack("Display Score").commit();
         }
     }
 

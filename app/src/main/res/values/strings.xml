@@ -44,4 +44,6 @@
     <string name="title_activity_activity_events">ActivityEvents</string>
     <string name="events">Upcoming Events</string>
     <string name="reset">Reset Scores</string>
+    <string name="share">Share</string>
+    <string name="send_to">Send Standings</string>
 </resources>
