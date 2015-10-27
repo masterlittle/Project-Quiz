@@ -140,8 +140,13 @@
     <orderEntry type="library" exported="" name="play-services-nearby-8.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-appindexing-8.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-gcm-8.1.0" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="bolts-android-1.2.1" level="project" />
     <orderEntry type="library" exported="" name="opencsv-2.3" level="project" />
+=======
+    <orderEntry type="library" exported="" name="opencsv-2.3" level="project" />
+    <orderEntry type="library" exported="" name="bolts-android-1.2.1" level="project" />
+>>>>>>> c4e54b10ede2fbc166cd36dc706a4407a01a9e85
     <orderEntry type="library" exported="" name="play-services-safetynet-8.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-vision-8.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-wallet-8.1.0" level="project" />
