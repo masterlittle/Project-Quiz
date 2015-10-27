@@ -138,7 +138,9 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
 
         setHasOptionsMenu(true);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.getSupportActionBar().setTitle("League Standings");
+        if(activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setTitle("League Standings");
+        }
 
         String[] from = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SCORE};
         int[] to = new int[]{R.id.student_name_position, R.id.student_name_field, R.id.student_score_field};

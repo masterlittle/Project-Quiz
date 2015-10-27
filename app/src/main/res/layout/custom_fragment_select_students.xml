@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:background="@color/colorPrimary"
+    android:background="@color/colorBackgroundCard"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <com.project.quiz.customviews.TextViewRegularFont
-        android:textColor="@color/colorPrimaryLight"
+        android:textColor="@color/colorText"
         android:layout_gravity="center"
         android:id="@+id/student_name_position"
         android:textSize="18sp"
@@ -29,7 +29,7 @@
         android:gravity="left"
         android:textSize="18sp"
         android:text="Students"
-        android:textColor="@color/colorPrimaryLight"
+        android:textColor="@color/colorText"
         android:layout_weight="3"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />

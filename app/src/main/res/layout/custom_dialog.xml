@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@color/GREYBACK"
     android:orientation="vertical">
 
     <com.project.quiz.customviews.TextViewBoldFont
@@ -12,7 +12,7 @@
         android:gravity="center"
         android:padding="@dimen/abc_action_bar_content_inset_material"
         android:text="Enter number of seeds/teams."
-        android:textColor="@color/colorPrimaryLight"
+        android:textColor="@color/colorTextDark"
         android:textSize="@dimen/font_size_xxlarge" />
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:background="@color/colorPrimaryLight"
             android:gravity="center"
             android:inputType="numberDecimal"
-            android:solidColor="@color/colorPrimary"
+            android:solidColor="@color/DARKGREYBACK"
             android:textSize="@dimen/font_size_large"
             android:textStyle="bold" />
     </LinearLayout>
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryLight"
+            android:background="@color/LIGHTGREYBACK"
             android:gravity="center"
             android:paddingBottom="@dimen/padding_custom_10dp"
             android:paddingTop="@dimen/padding_custom_10dp"
@@ -59,12 +59,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:paddingBottom="@dimen/padding_custom_10dp"
             android:paddingTop="@dimen/padding_custom_10dp"
             android:text="@string/button_next"
-            android:textColor="@color/colorPrimaryLight"
+            android:textColor="@color/colorBackground"
             android:textSize="@dimen/font_size_large" />
     </LinearLayout>
 </LinearLayout>

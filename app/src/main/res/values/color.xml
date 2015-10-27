@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--QUIZ COLOR PALETTES-->
-    <color name="colorPrimary">#104547</color>
-    <color name="colorPrimaryTransparent">#66104547</color>
-    <color name="colorPrimaryTransparentDark">#AA104547</color>
-    <color name="colorPrimaryDark">#10211A</color>
-    <color name="colorPrimaryLight">#FFFFC7</color>
-    <color name="colorPrimaryLighter">#FAAFA9</color>
-    <color name="colorPrimaryActionBar">#FCA258</color>
+    <color name="colorPrimary">@color/BLU500</color>
+    <color name="colorPrimaryTransparent">#67303030</color>
+    <color name="colorPrimaryTransparentDark">#99212121</color>
+    <color name="colorPrimaryDark">@color/BLU900</color>
+    <color name="colorAccent">@color/REDA400</color>
+    <color name="colorPrimaryLight">@color/white</color>
+    <color name="colorDivider">#B6B6B6</color>
+    <color name="colorText">@color/white</color>
+    <color name="colorTextBold">#FFFFDE</color>
+    <color name="colorPrimaryLighter">@color/BLU300</color>
     <color name="colorTextDark">#FFFFC7</color>
+    <color name="colorBackground">@color/GREYBACK</color>
+    <color name="colorBackgroundCard">@color/LIGHTGREYBACK</color>
 
+    <color name="LIGHTGREYBACK">#424242</color>
+    <color name="GREYBACK">#303030</color>
+    <color name="DARKGREYBACK">#212121</color>
     <!--BLACK COLOR PALLETES-->
     <color name="GBL1">#333333</color>
     <color name="GBL2">#666666</color>
@@ -33,6 +41,16 @@
     <color name="BLU4">#45afc9</color>
     <color name="BLU5">#59b7cf</color>
     <color name="BLU6">#6dc0d5</color>
+
+    <!-- BLUE MATERIAL COLOR PALETTE-->
+    <color name="BLU100">#B3E5FC</color>
+    <color name="BLU300">#4FC3F7</color>
+    <color name="BLU500">#2196F3</color>
+    <color name="BLU700">#0288D1</color>
+    <color name="BLU900">#1976D2</color>
+    <color name="A700">#00B0FF</color>
+    <color name="REDA400">#FF5252</color>
+    <color name="REDA200">#FF6E40</color>
 
     <!-- Color CVV Checked/Unchecked -->
     <color name="cvv_unchecked">#fbdfd3</color>

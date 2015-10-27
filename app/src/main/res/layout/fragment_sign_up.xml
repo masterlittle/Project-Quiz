@@ -1,0 +1,120 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/colorBackground">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.project.quiz.fragments.FragmentSignUp">
+
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:text="@string/signup"
+        android:textColor="@color/colorTextDark"
+        android:textSize="@dimen/font_size_xxlarge" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/username_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorPrimary">
+
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:id="@+id/username_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-Mail"
+            android:inputType="text"
+            android:textColor="@color/colorText" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/phone_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorPrimary">
+
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:id="@+id/phone_field"
+            android:layout_width="match_parent"
+            android:maxLength="10"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:textColor="@color/colorText" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/year_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorPrimary">
+
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:id="@+id/year_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="College Year"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorText" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorPrimary">
+
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:id="@+id/password_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/colorText" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/password_verify_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorPrimary">
+
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:id="@+id/password_verify_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Verify Password"
+            android:inputType="textPassword"
+            android:textColor="@color/colorText" />
+    </android.support.design.widget.TextInputLayout>
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:layout_marginTop="50dp"
+        android:id="@+id/button_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_yes_drawable"
+        android:gravity="center"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:text="@string/signup"
+        android:textColor="@color/colorBackground"
+        android:textSize="@dimen/font_size_xlarge" />
+
+
+</LinearLayout>
+</ScrollView>

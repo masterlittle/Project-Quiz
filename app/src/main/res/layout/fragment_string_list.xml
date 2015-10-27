@@ -9,7 +9,7 @@
     tools:context="com.project.quiz.fragments.FragmentSelectStudents">
 
     <ListView
-        android:background="@color/colorPrimary"
+        android:background="@color/colorBackgroundCard"
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

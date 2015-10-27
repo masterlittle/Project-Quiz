@@ -2,25 +2,44 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project.quiz" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <!--
+      IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
+      to match your app's package name + ".permission.C2D_MESSAGE".
+    -->
+    <permission
+        android:name="com.project.quiz.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.project.quiz.permission.C2D_MESSAGE" />
+
     <application
         android:name=".activities.QuizApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBZiUAzG89uvJRgAJgxASA0YC2GWmB9S4c" />
+
         <provider
             android:name=".contentprovider.DataContentProvider"
             android:authorities="com.project.quiz.contentprovider"
-            android:exported="false" >
-        </provider>
+            android:exported="false" />
         <provider
             android:name=".extendedcalendarview.CalendarProvider"
             android:authorities="com.project.quiz.extendedcalendarview.calendarprovider" />
 
         <activity
             android:name=".activities.ActivityUpdateScore"
-            android:label="@string/app_name" >
-        </activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activities.ActivityTeamDetails"
             android:label="@string/title_activity_activity_team_details" >
@@ -34,12 +53,10 @@
         </activity>
         <activity
             android:name=".activities.ActivityAddStudentRecords"
-            android:label="@string/title_activity_activity_add_student_records" >
-        </activity>
+            android:label="@string/title_activity_activity_add_student_records" />
         <activity
             android:name=".activities.ActivitySelectTeams"
-            android:label="@string/title_activity_activity_select_teams" >
-        </activity>
+            android:label="@string/title_activity_activity_select_teams" />
         <activity
             android:name=".activities.ActivityHomeScreen"
             android:label="Let&apos;s Quiz!" >
@@ -50,14 +67,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:windowSoftInputMode="stateAlwaysHidden"
             android:name=".activities.ActivitySwapStudentsTeams"
-            android:label="@string/title_activity_activity_swap_students_teams" >
+            android:label="@string/title_activity_activity_swap_students_teams"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.ActivityEvents"
+            android:label="@string/title_activity_activity_events"
+            android:parentActivityName=".activities.ActivityHomeScreen" />
+
+        <service android:name="com.parse.PushService" />
+
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
+                <category android:name="com.project.quiz" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activities.ActivityLogon"
+            android:label="@string/title_activity_activity_logon" >
         </activity>
         <activity
-            android:parentActivityName=".activities.ActivityHomeScreen"
-            android:name=".activities.ActivityEvents"
-            android:label="@string/title_activity_activity_events" >
+            android:name=".activities.AuthActivity"
+            android:label="@string/title_activity_auth" >
         </activity>
     </application>
 

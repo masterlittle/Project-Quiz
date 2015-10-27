@@ -92,6 +92,7 @@ public class ExtendedCalendarView extends RelativeLayout implements OnItemClickL
 		month.setId(2);
 		month.setLayoutParams(params);
 		month.setText(cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())+" "+cal.get(Calendar.YEAR));
+		month.setTextColor(getResources().getColor(R.color.colorPrimary));
 		month.setTextSize(25);
 		
 		base.addView(month);

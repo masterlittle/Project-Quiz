@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorBackground"
     android:orientation="vertical">
     <TextView
         android:layout_marginTop="20dp"
@@ -49,12 +49,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.Toolbar
+                  <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
-                    android:titleTextColor="@color/colorPrimaryLight"
+                    android:titleTextColor="@color/black"
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorPrimaryDark"
                     android:theme="@style/CustomTheme"
                     android:layout_height="46dp">
                 </android.support.v7.widget.Toolbar>
@@ -62,10 +62,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:background="@color/colorPrimaryLight"
+                    android:background="@color/DARKGREYBACK"
                     android:orientation="horizontal">
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_half"
                         android:layout_width="0dp"
@@ -74,9 +75,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="+0.5"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_one"
                         android:layout_width="0dp"
@@ -85,9 +87,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="+1"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_two"
                         android:layout_width="0dp"
@@ -96,9 +99,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="+2"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_five"
                         android:layout_width="0dp"
@@ -107,9 +111,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="+5"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/plus_ten"
                         android:layout_width="0dp"
@@ -118,17 +123,18 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="+10"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:background="#FCA258"
+                    android:background="@color/DARKGREYBACK"
                     android:orientation="horizontal"
                     app:layout_scrollFlags="scroll">
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_half"
                         android:layout_width="0dp"
@@ -137,7 +143,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="-0.5"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
                         android:textSize="@dimen/font_size_large"
@@ -148,9 +154,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="-1"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_two"
                         android:layout_width="0dp"
@@ -159,9 +166,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="-2"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_five"
                         android:layout_width="0dp"
@@ -170,9 +178,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="-5"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
 
                     <TextView
+                        android:background="@drawable/cell_with_right_border"
                         android:textSize="@dimen/font_size_large"
                         android:id="@+id/minus_ten"
                         android:layout_width="0dp"
@@ -181,7 +190,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="-10"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/colorText" />
                 </LinearLayout>
             </LinearLayout>
 

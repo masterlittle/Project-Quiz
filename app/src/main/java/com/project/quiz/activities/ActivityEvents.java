@@ -33,7 +33,7 @@ public class ActivityEvents extends AppCompatActivity implements ChangeFragment 
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String[] tabs = new String[]{"Upcoming Events", "Add Events"};
+        String[] tabs = new String[]{"Your Events\n","Add Events\n", "Upcoming Events\n"};
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         PagerAdapter mAdapter = new EventsTabPagerAdapter(getSupportFragmentManager(), tabs, tabs.length);

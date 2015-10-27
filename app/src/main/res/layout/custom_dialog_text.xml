@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:background="@color/GREYBACK"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <com.project.quiz.customviews.TextViewBoldFont
         android:text="Enter number of seeds/teams."
         android:padding="@dimen/abc_action_bar_content_inset_material"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorTextDark"
         android:textSize="@dimen/font_size_xxlarge"
         android:gravity="center"
         android:id="@+id/dialog_heading"
@@ -15,7 +17,7 @@
     <com.project.quiz.customviews.TextViewRegularFont
         android:padding="@dimen/abc_action_bar_content_inset_material"
         android:textSize="@dimen/font_size_xlarge"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorText"
         android:gravity="center"
         android:id="@+id/dialog_message"
         android:layout_width="match_parent"
@@ -27,7 +29,7 @@
         <com.project.quiz.customviews.TextViewRegularFont
             android:layout_margin="6dp"
             android:textColor="@color/colorPrimary"
-            android:background="@color/colorPrimaryLight"
+            android:background="@color/LIGHTGREYBACK"
             android:id="@+id/button_no"
             android:paddingBottom="@dimen/padding_custom_10dp"
             android:gravity="center"
@@ -45,7 +47,7 @@
             android:paddingBottom="@dimen/padding_custom_10dp"
             android:paddingTop="@dimen/padding_custom_10dp"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryLight"
+            android:textColor="@color/colorBackground"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

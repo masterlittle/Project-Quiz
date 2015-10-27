@@ -1,7 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorBackground"
     android:fillViewport="true">
 
     <LinearLayout
@@ -14,10 +14,10 @@
             layout="@layout/tool_bar" />
 
         <com.project.quiz.customviews.TextViewBoldFont
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="16dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:gravity="center"
             android:text="Instructions"
@@ -25,9 +25,9 @@
             android:textSize="24sp" />
 
         <com.project.quiz.customviews.TextViewRegularFont
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:gravity="left"
             android:text="@string/instructions"
             android:textColor="@color/colorPrimaryLight"
@@ -43,11 +43,11 @@
             android:textSize="24sp" />
 
         <android.support.design.widget.TextInputLayout
-            android:layout_margin="16dp"
             android:id="@+id/quizmaster_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="16dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:textColorHint="@color/colorPrimaryLight">
 
@@ -70,11 +70,11 @@
             android:textSize="24sp" />
 
         <android.support.design.widget.TextInputLayout
-            android:layout_margin="16dp"
             android:id="@+id/quiz_tag_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="16dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:textColorHint="@color/colorPrimaryLight">
 
@@ -88,15 +88,15 @@
         </android.support.design.widget.TextInputLayout>
 
         <com.project.quiz.customviews.TextViewRegularFont
-            android:layout_margin="16dp"
             android:id="@+id/button_next"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/colorPrimaryLight"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_yes_drawable"
             android:elevation="5dp"
             android:gravity="center"
             android:text="Next"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorBackground"
             android:textSize="22sp" />
     </LinearLayout>
 </ScrollView>
