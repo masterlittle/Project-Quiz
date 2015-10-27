@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.project.quiz" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.project.quiz" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -51,6 +50,15 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+
+        <activity
+            android:name=".activities.ActivityLogon"
+            android:label="@string/title_activity_activity_logon" >
+        </activity>
+        <activity
+            android:name=".activities.AuthActivity"
+            android:label="@string/title_activity_auth" >
+        </activity>
         <activity
             android:name=".activities.ActivityAddStudentRecords"
             android:label="@string/title_activity_activity_add_student_records" />
@@ -76,7 +84,7 @@
             android:parentActivityName=".activities.ActivityHomeScreen" />
 
         <service android:name="com.parse.PushService" />
-
+        
         <receiver
             android:name=".notifications.CustomPushReceiver"
             android:exported="false" >
@@ -99,15 +107,6 @@
                 <category android:name="com.project.quiz" />
             </intent-filter>
         </receiver>
-
-        <activity
-            android:name=".activities.ActivityLogon"
-            android:label="@string/title_activity_activity_logon" >
-        </activity>
-        <activity
-            android:name=".activities.AuthActivity"
-            android:label="@string/title_activity_auth" >
-        </activity>
     </application>
 
 </manifest>

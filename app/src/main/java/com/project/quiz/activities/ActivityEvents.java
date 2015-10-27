@@ -26,7 +26,7 @@ public class ActivityEvents extends AppCompatActivity implements ChangeFragment 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_student_records);
+        setContentView(R.layout.activity_events);
         ButterKnife.bind(this);
 
         toolbar.setTitle("Events");
