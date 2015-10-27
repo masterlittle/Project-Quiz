@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.project.quiz.fragments.FragmentAddEvents;
 import com.project.quiz.fragments.FragmentAddStudentRecords;
+import com.project.quiz.fragments.FragmentAllEvents;
 import com.project.quiz.fragments.FragmentEditStudentDetails;
 import com.project.quiz.fragments.FragmentUpcomingEvents;
 
@@ -29,6 +30,9 @@ public class EventsTabPagerAdapter extends FragmentPagerAdapter {
                 return new FragmentUpcomingEvents();
             case 1:
                 return new FragmentAddEvents();
+            case 2:
+                return new FragmentAllEvents();
+
         }
 
         return null;

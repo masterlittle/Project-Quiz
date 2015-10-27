@@ -51,9 +51,9 @@ public class CustomEventsAdapter extends CursorAdapter {
         String endTime  = cursor.getString(cursor.getColumnIndex(CalendarProvider.END));
 
         Date dateStart = new Date(Long.parseLong(startTime));
-        String startTimeFormatted = new SimpleDateFormat("EEE, MMM dd HH:mm:ss yyyy").format(dateStart);
+        String startTimeFormatted = new SimpleDateFormat("EEE, MMM dd, HH:mm:ss yyyy").format(dateStart);
         Date dateEnd = new Date(Long.parseLong(endTime));
-        String endTimeFormatted = new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy").format(dateEnd);
+        String endTimeFormatted = new SimpleDateFormat("EEE, MMM dd, HH:mm:ss yyyy").format(dateEnd);
 
         holder.eventTitle.setText(cursor.getString(cursor.getColumnIndex(CalendarProvider.EVENT)));
         holder.eventLocation.setText(cursor.getString(cursor.getColumnIndex(CalendarProvider.LOCATION)));

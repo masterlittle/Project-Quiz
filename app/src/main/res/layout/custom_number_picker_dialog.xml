@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorBackground"
     android:orientation="vertical">
 
     <com.project.quiz.customviews.TextViewRegularFont
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="        Edit Score      "
-        android:textColor="@color/colorPrimaryLight"
+        android:textColor="@color/colorTextDark"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -27,7 +28,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@color/colorPrimaryLight"
             android:scrollbarSize="@dimen/font_size_xlarge"
-            android:solidColor="@color/colorPrimary" />
+            android:solidColor="@color/DARKGREYBACK" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:background="@color/white"
+            android:background="@color/LIGHTGREYBACK"
             android:gravity="center"
             android:paddingBottom="@dimen/padding_custom_10dp"
             android:paddingTop="@dimen/padding_custom_10dp"
@@ -55,12 +56,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:paddingBottom="@dimen/padding_custom_10dp"
             android:paddingTop="@dimen/padding_custom_10dp"
             android:text="OK"
-            android:textColor="@color/white"
+            android:textColor="@color/colorBackground"
             android:textSize="@dimen/font_size_large" />
     </LinearLayout>
 

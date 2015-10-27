@@ -26,9 +26,6 @@ import android.widget.Toast;
 
 import com.project.quiz.interfaces.ChangeFragment;
 
-/**
- * Created by Amandeep Anguralla on 3/19/15.
- */
 public class BaseFragment extends Fragment {
 
     private Context mContext;

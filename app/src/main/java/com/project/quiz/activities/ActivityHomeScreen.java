@@ -15,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.parse.ParseUser;
 import com.project.quiz.R;
 import com.project.quiz.contentprovider.DataContentProvider;
 import com.project.quiz.database.StudentRecords;
@@ -45,11 +47,11 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        upadateTeams();
+        updateTeams();
 
         loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_HOME_SCREEN, null);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().findItem(R.id.addStudents).setChecked(true);
+        navigationView.getMenu().findItem(R.id.login).setChecked(true);
 //        navigate(R.id.addStudents);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.openDrawer, R.string.closeDrawer){
@@ -75,7 +77,7 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
         actionBarDrawerToggle.syncState();
     }
 
-    private void upadateTeams() {
+    private void updateTeams() {
         ContentValues values = new ContentValues();
         values.put(StudentRecords.TEAM_NUMBER, -1);
         getContentResolver().update(DataContentProvider.CONTENT_STORE_STUDENTS_URI,values, null, null);
@@ -84,7 +86,13 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_home_screen, menu);
+        ParseUser user = ParseUser.getCurrentUser();
+        if(user!=null) {
+            getMenuInflater().inflate(R.menu.menu_activity_home_screen, menu);
+        }
+        else{
+            getMenuInflater().inflate(R.menu.menu_activity_logon, menu);
+        }
         return true;
     }
 
@@ -108,6 +116,10 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
 
     private void navigate(final int itemId) {
         // perform the actual navigation logic, updating the main content fragment etc
+        if(itemId == R.id.login){
+//            startActivity(new Intent(this, ActivityTeamDetails.class));
+            startActivity(new Intent(this, ActivityLogon.class));
+        }
         if(itemId == R.id.addStudents){
             startActivity(new Intent(this, ActivityAddStudentRecords.class));
         }
@@ -126,20 +138,16 @@ public class ActivityHomeScreen extends AppCompatActivity implements ChangeFragm
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
+        if(id == R.id.logout){
+            ParseUser.logOut();
+            Intent intent = new Intent(this, ActivityHomeScreen.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         }
 
-        return super.onOptionsItemSelected(item);
+        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
