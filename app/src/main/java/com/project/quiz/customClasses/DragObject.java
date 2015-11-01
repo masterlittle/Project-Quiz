@@ -1,4 +1,4 @@
-package com.project.quiz.customClasses;
+package com.project.quiz.customclasses;
 
 import android.database.Cursor;
 import android.view.View;

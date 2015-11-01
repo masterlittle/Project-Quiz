@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.TextInputLayout;
+import android.text.TextUtils;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseRole;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 import com.project.quiz.R;
 import com.project.quiz.customviews.EditTextRegularFont;
@@ -48,25 +52,41 @@ public class FragmentSignUp extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    @Bind(R.id.username_field) EditTextRegularFont username;
-    @Bind(R.id.phone_field) EditTextRegularFont phone;
-    @Bind(R.id.year_field) EditTextRegularFont year;
-    @Bind(R.id.password_field) EditTextRegularFont password;
-    @Bind(R.id.password_verify_field) EditTextRegularFont verifyPassword;
-    @Bind(R.id.username_layout) TextInputLayout usernameLayout;
-    @Bind(R.id.phone_layout) TextInputLayout phoneLayout;
-    @Bind(R.id.year_layout) TextInputLayout yearLayout;
-    @Bind(R.id.password_layout) TextInputLayout passwordLayout;
-    @Bind(R.id.password_verify_layout) TextInputLayout verifyPasswordLayout;
+    @Bind(R.id.username_field)
+    EditTextRegularFont username;
+    @Bind(R.id.phone_field)
+    EditTextRegularFont phone;
+    @Bind(R.id.year_field)
+    EditTextRegularFont year;
+    @Bind(R.id.password_field)
+    EditTextRegularFont password;
+    @Bind(R.id.password_verify_field)
+    EditTextRegularFont verifyPassword;
+    @Bind(R.id.name_field)
+    EditTextRegularFont name;
+    @Bind(R.id.name_layout)
+    TextInputLayout nameLayout;
+    @Bind(R.id.username_layout)
+    TextInputLayout usernameLayout;
+    @Bind(R.id.phone_layout)
+    TextInputLayout phoneLayout;
+    @Bind(R.id.year_layout)
+    TextInputLayout yearLayout;
+    @Bind(R.id.password_layout)
+    TextInputLayout passwordLayout;
+    @Bind(R.id.password_verify_layout)
+    TextInputLayout verifyPasswordLayout;
+
     @OnClick(R.id.button_signup)
-    public void onClick(){
+    public void onClick() {
         boolean result = validateData();
-        if(result){
+        if (result) {
             final ParseUser user = new ParseUser();
             user.setUsername(username.getText().toString().trim());
             user.setPassword(password.getText().toString().trim());
             user.put("phone", phone.getText().toString().trim());
             user.put("year", year.getText().toString().trim());
+            user.put("name", name.getText().toString().trim());
 
             /**
              * Sign up User
@@ -76,53 +96,77 @@ public class FragmentSignUp extends Fragment {
                 public void done(ParseException e) {
                     if (e == null) {
                         Toast.makeText(getActivity(), "Sign Up successful", Toast.LENGTH_LONG).show();
-                        mListener.onFragmentInteraction(null);
+                        ParseQuery<ParseRole> parseRole = ParseRole.getQuery();
+                        parseRole.findInBackground(new FindCallback<ParseRole>() {
+                            @Override
+                            public void done(List<ParseRole> objects, ParseException e) {
+                                if (e == null) {
+
+                                    for (ParseRole role : objects) {
+                                        if (role.getName().equalsIgnoreCase(CommonLibs.Roles.ROLE_ADMINISTRATOR)) {
+                                            role.getUsers().add(user);
+                                            role.saveInBackground(new SaveCallback() {
+                                                @Override
+                                                public void done(ParseException e) {
+                                                    if (e == null) {
+                                                        if (mListener != null && !getActivity().isDestroyed())
+                                                            mListener.onFragmentInteraction(null);
+                                                        Log.e("Success", "Role success");
+                                                    } else {
+                                                        Log.e("Fail", e.getMessage());
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        });
                     } else {
                         Log.e("Sign Up Error", e.toString());
-                    }
-                }
-            });
-
-            /**
-             * Add Role
-             */
-
-            ParseQuery<ParseRole> parseRole = ParseRole.getQuery();
-            parseRole.findInBackground(new FindCallback<ParseRole>() {
-                @Override
-                public void done(List<ParseRole> objects, ParseException e) {
-                    if(e == null){
-                        for(ParseRole role : objects){
-                            if(role.getName().equalsIgnoreCase(CommonLibs.Roles.ROLE_NORMAL)) {
-                                role.getUsers().add(user);
-                                role.saveInBackground();
-                            }
-                        }
                     }
                 }
             });
         }
     }
 
+    public final static boolean isValidEmail(CharSequence target) {
+        if (TextUtils.isEmpty(target)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
+    private void setAnimations() {
+        setAllowEnterTransitionOverlap(true);
+        setEnterTransition(new Slide());
+        setExitTransition(new Fade());
+    }
+
     private boolean validateData() {
         boolean result = true;
-        if(username.getText().toString().trim().length() <=0){
-            usernameLayout.setError("Enter username");
+        if (username.getText().toString().trim().length() <= 0 || !(isValidEmail(username.getText().toString().trim()))) {
+            usernameLayout.setError("Enter valid email");
             result = false;
         }
-        if(phone.getText().toString().trim().length() <=0){
+        if (name.getText().toString().trim().length() <= 0) {
+            nameLayout.setError("Enter your name");
+            result = false;
+        }
+        if (phone.getText().toString().trim().length() <= 0) {
             phone.setError("Enter Phone Number");
             result = false;
         }
-        if(year.getText().toString().trim().length() <=0){
+        if (year.getText().toString().trim().length() <= 0) {
             year.setError("Enter Year");
             result = false;
         }
-        if(password.getText().toString().trim().length() <=8){
+        if (password.getText().toString().trim().length() <= 8) {
             password.setError("Enter password of atleast 8 characters");
             result = false;
         }
-        if(!verifyPassword.getText().toString().trim().equalsIgnoreCase(password.getText().toString().trim())){
+        if (!verifyPassword.getText().toString().trim().equalsIgnoreCase(password.getText().toString().trim())) {
             verifyPassword.setError("The two passwords do not match!");
             result = false;
         }
@@ -153,6 +197,7 @@ public class FragmentSignUp extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setAnimations();
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);

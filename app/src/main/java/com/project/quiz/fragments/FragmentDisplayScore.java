@@ -98,8 +98,8 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
         Formatter formatter;
         mCursor.moveToPosition(-1);
         while(mCursor.moveToNext()){
-            String position = String.valueOf(mCursor.getPosition() + 1);
-            String name = mCursor.getString(mCursor.getColumnIndex(StudentRecords.STUDENT_NAME)).trim();
+            String position = String.valueOf(mCursor.getPosition() + 1) + ")";
+            String name = mCursor.getString(mCursor.getColumnIndex(StudentRecords.STUDENT_NAME)).trim()+"- ";
 //            length = name.length();
 //            while(length <25){
 //                name+= " ";
@@ -203,7 +203,7 @@ public class FragmentDisplayScore extends Fragment implements AbsListView.OnItem
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String projection[] = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SCORE};
-        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_STORE_STUDENTS_URI , projection, null, null, StudentRecords.STUDENT_SCORE+" desc");
+        return new CursorLoader(getActivity(), DataContentProvider.CONTENT_EMPTY_STUDENTS_URI , projection, null, null, StudentRecords.STUDENT_SCORE+" desc");
 
     }
 

@@ -21,7 +21,21 @@
         android:text="@string/signup"
         android:textColor="@color/colorTextDark"
         android:textSize="@dimen/font_size_xxlarge" />
+<android.support.design.widget.TextInputLayout
+    android:id="@+id/name_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:textColorHint="@color/colorPrimary">
 
+    <com.project.quiz.customviews.EditTextRegularFont
+        android:id="@+id/name_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text"
+        android:textColor="@color/colorText" />
+</android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/username_layout"
@@ -34,7 +48,7 @@
             android:id="@+id/username_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-Mail"
+            android:hint="E-Mail(This will be your username)"
             android:inputType="text"
             android:textColor="@color/colorText" />
     </android.support.design.widget.TextInputLayout>

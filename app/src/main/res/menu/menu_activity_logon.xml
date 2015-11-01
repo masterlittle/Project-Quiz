@@ -3,4 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.project.quiz.activities.ActivityLogon">
 
+    <item android:title="Sync"
+        android:id="@+id/sync"
+        android:icon="@drawable/ic_autorenew_white_24dp"
+        app:showAsAction="always"/>
 </menu>

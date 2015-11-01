@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.CursorLoader;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.project.quiz.activities.ActivityHomeScreen;
 import com.project.quiz.activities.ActivityUpdateScore;
 import com.project.quiz.adapters.CustomCheckboxSelectQuizmasterAdapter;
 import com.project.quiz.contentprovider.DataContentProvider;
+import com.project.quiz.customclasses.SyncData;
 import com.project.quiz.database.StorePointsTable;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.utils.CommonLibs;
@@ -191,7 +193,12 @@ public class FragmentFinishQuiz extends Fragment implements android.support.v4.a
                     prevScore = data.getString(data.getColumnIndex(StorePointsTable.CURRENT_SCORE));
                 }
             }
-
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    new SyncData().sync(getContext(), getActivity());
+                }
+            });
         }
         else if(loader.getId() == 0){
             mAdapter.swapCursor(data);

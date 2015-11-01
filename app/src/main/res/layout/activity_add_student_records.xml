@@ -28,7 +28,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_height="wrap_content" />
-    <com.project.quiz.customClasses.SlidingTabLayout
+    <com.project.quiz.customviews.SlidingTabLayout
         android:background="@color/colorPrimaryLight"
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"

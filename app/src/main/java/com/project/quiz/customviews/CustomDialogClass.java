@@ -1,17 +1,13 @@
-package com.project.quiz.customClasses;
+package com.project.quiz.customviews;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 
 import com.project.quiz.R;
-import com.project.quiz.customviews.EditTextRegularFont;
 import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.interfaces.DialogBoxListener;
 import com.project.quiz.utils.CommonLibs;

@@ -142,7 +142,7 @@ public class ActivityUpdateScore extends AppCompatActivity implements UpdateScor
         } else if (id == R.id.action_finish) {
             flag = 0;
 //            listOfCurrentScores = new ArrayList<>();
-            getLoaderManager().initLoader(2, null, this);
+//            getLoaderManager().initLoader(2, null, this);
             loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_FINISH_QUIZ, null);
             return true;
         }

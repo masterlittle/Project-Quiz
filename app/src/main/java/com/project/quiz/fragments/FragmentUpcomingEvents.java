@@ -11,8 +11,6 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.project.quiz.R;
@@ -21,8 +19,6 @@ import com.project.quiz.customviews.IconTextView;
 import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.extendedcalendarview.CalendarProvider;
 import com.project.quiz.interfaces.OnEventChange;
-
-import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -74,7 +70,7 @@ public class FragmentUpcomingEvents extends ListFragment implements LoaderManage
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        long c = new CalendarProvider().geCountOfEvents(getActivity());
+        long c = new CalendarProvider().getCountOfEvents(getActivity());
             View v = inflater.inflate(R.layout.fragment_upcoming_events, container, false);
             ButterKnife.bind(this, v);
         if(c!= 0) {

@@ -22,7 +22,7 @@ import com.project.quiz.utils.CommonLibs;
 
 import java.util.List;
 
-public class AuthActivity extends AppCompatActivity implements CheckLoginInterface {
+public class AuthActivity extends AppCompatActivity  {
 
     protected static final int LOGIN_REQUEST_CODE = 100;
     private Context context;
@@ -36,7 +36,6 @@ public class AuthActivity extends AppCompatActivity implements CheckLoginInterfa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         context = this;
-        isLoggedIn(null);
     }
 
     @Override
@@ -61,12 +60,8 @@ public class AuthActivity extends AppCompatActivity implements CheckLoginInterfa
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void isLoggedIn(String info) {
+    protected void checkRole(final String[] roleTypes, Context childContext){
         currentUser = ParseUser.getCurrentUser();
-    }
-
-    protected void checkRole(final String roleType, Context childContext){
         listener = (AuthenticateUserInterface)childContext;
         if (currentUser != null) {
             isLoggedIn = true;
@@ -80,19 +75,22 @@ public class AuthActivity extends AppCompatActivity implements CheckLoginInterfa
                             for (ParseObject obj : objects) {
                                 Log.e("Roles", obj.toString());
                                 Log.e("Roles name", obj.getString("name"));
-                                if (!roleType.equalsIgnoreCase(obj.getString("name"))) {
-                                    Toast.makeText(context, "You are not authorized", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    isAuthorized = true;
-                                    Toast.makeText(context, "You are authorized", Toast.LENGTH_SHORT).show();
+                                for (String roleType : roleTypes) {
+                                    if (roleType.equalsIgnoreCase(obj.getString("name"))) {
+                                        isAuthorized = true;
+                                        Toast.makeText(context, "You are authorized", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
+                            }
+                            if(!isAuthorized){
+                                Toast.makeText(context, "You are not authorized", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else{
                             Toast.makeText(context, "You are not authorized", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(context, "Some error occured", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Some error occurred", Toast.LENGTH_SHORT).show();
                         Log.e("Error", e.toString());
                     }
                     listener.authenticateUser(isAuthorized);

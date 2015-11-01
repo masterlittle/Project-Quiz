@@ -2,10 +2,14 @@ package com.project.quiz.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CursorAdapter;
 
 import com.project.quiz.R;
@@ -38,13 +42,13 @@ public class CustomEventsAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, final Context context, @NonNull final Cursor cursor) {
+    public void bindView(final View v, final Context context, @NonNull final Cursor cursor) {
         ViewHolder holder;
-        if (view.getTag() == null) {
-            holder = new ViewHolder(view);
-            view.setTag(holder);
+        if (v.getTag() == null) {
+            holder = new ViewHolder(v);
+            v.setTag(holder);
         }
-        holder = (ViewHolder) view.getTag();
+        holder = (ViewHolder) v.getTag();
 
         final String eventId = cursor.getString(cursor.getColumnIndex(CalendarProvider.EVENT_ID));
         String startTime  = cursor.getString(cursor.getColumnIndex(CalendarProvider.START));
@@ -64,11 +68,22 @@ public class CustomEventsAdapter extends CursorAdapter {
         holder.eventDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.getContentResolver().delete(CalendarProvider.CONTENT_URI, CalendarProvider.EVENT_ID + "=?", new String[]{eventId});
-                long c = new CalendarProvider().geCountOfEvents(context);
-                if(c == 0){
-                    listener.showNoEvents();
-                }
+//                v.animate().alpha(0f).setDuration(500);
+                final Animation animation = AnimationUtils.loadAnimation(v.getContext(), R.anim.slide_out_right);
+                animation.setDuration(1000);
+                v.startAnimation(animation);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        context.getContentResolver().delete(CalendarProvider.CONTENT_URI, CalendarProvider.EVENT_ID + "=?", new String[]{eventId});
+                        context.getContentResolver().notifyChange(CalendarProvider.CONTENT_URI, null);
+                        long c = new CalendarProvider().getCountOfEvents(context);
+                        if(c == 0){
+                            listener.showNoEvents();
+                        }
+                    }
+                }, 900);
+
             }
         });
 

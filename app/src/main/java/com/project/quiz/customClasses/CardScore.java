@@ -1,4 +1,4 @@
-package com.project.quiz.customClasses;
+package com.project.quiz.customclasses;
 
 /**
  * Created by Shitij on 23/09/15.

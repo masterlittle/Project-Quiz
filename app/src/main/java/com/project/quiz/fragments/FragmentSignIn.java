@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,14 +44,19 @@ public class FragmentSignIn extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    @Bind(R.id.username_field) EditTextRegularFont username;
-    @Bind(R.id.password_field) EditTextRegularFont password;
-    @Bind(R.id.username_layout) TextInputLayout usernameLayout;
-    @Bind(R.id.password_layout) TextInputLayout passwordLayout;
+    @Bind(R.id.username_field)
+    EditTextRegularFont username;
+    @Bind(R.id.password_field)
+    EditTextRegularFont password;
+    @Bind(R.id.username_layout)
+    TextInputLayout usernameLayout;
+    @Bind(R.id.password_layout)
+    TextInputLayout passwordLayout;
+
     @OnClick(R.id.button_login)
-    public void onClick(){
+    public void onClick() {
         boolean result = validateData();
-        if(result){
+        if (result) {
             ParseUser.logInInBackground(username.getText().toString().trim(), password.getText().toString().trim(), new LogInCallback() {
                 @Override
                 public void done(ParseUser user, ParseException e) {
@@ -64,32 +71,34 @@ public class FragmentSignIn extends Fragment {
             });
         }
     }
+
     @OnTextChanged(R.id.username_field)
     public void onUsernameChangedListener(Editable s) {
-        if(s.length() >0){
+        if (s.length() > 0) {
             usernameLayout.setErrorEnabled(false);
         }
     }
+
     @OnTextChanged(R.id.password_field)
     public void onPasswordChangedListener(Editable s) {
-        if(s.length() >0){
+        if (s.length() > 0) {
             passwordLayout.setErrorEnabled(false);
         }
     }
 
     @OnClick(R.id.sign_up)
-    public void clickSignUp(){
+    public void clickSignUp() {
         mListener.signUp();
     }
 
 
     private boolean validateData() {
         boolean result = true;
-        if(username.getText().toString().trim().length() <= 0){
+        if (username.getText().toString().trim().length() <= 0) {
             usernameLayout.setError("Enter username");
             result = false;
         }
-        if(password.getText().toString().trim().length() <= 0){
+        if (password.getText().toString().trim().length() <= 0) {
             passwordLayout.setError("Enter password");
             result = false;
         }
@@ -120,6 +129,7 @@ public class FragmentSignIn extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setAnimations();
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -131,7 +141,7 @@ public class FragmentSignIn extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_sign_in, container, false);
+        View v = inflater.inflate(R.layout.fragment_sign_in, container, false);
         ButterKnife.bind(this, v);
         return v;
     }
@@ -172,7 +182,13 @@ public class FragmentSignIn extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onSignInFragmentInteraction(Uri uri);
+
         public void signUp();
+    }
+
+    private void setAnimations() {
+        setAllowEnterTransitionOverlap(true);
+        setEnterTransition(new Slide());
     }
 
 }

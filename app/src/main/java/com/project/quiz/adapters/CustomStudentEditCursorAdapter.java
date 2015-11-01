@@ -1,28 +1,19 @@
 package com.project.quiz.adapters;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.NumberPicker;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
 import com.project.quiz.R;
-import com.project.quiz.contentprovider.DataContentProvider;
-import com.project.quiz.customClasses.CustomNumberPicker;
+import com.project.quiz.customviews.CustomNumberPicker;
 import com.project.quiz.customviews.IconTextView;
 import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.database.StudentRecords;
-import com.project.quiz.fragments.FragmentSelectStudents;
 import com.project.quiz.interfaces.DialogBoxListener;
-import com.project.quiz.interfaces.NumberPickerListener;
 
 import java.util.HashMap;
 

@@ -1,25 +1,17 @@
 package com.project.quiz.fragments;
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.net.Uri;
+import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
+import com.parse.ParseUser;
 import com.project.quiz.R;
-import com.project.quiz.extendedcalendarview.CalendarProvider;
-import com.project.quiz.extendedcalendarview.Day;
-import com.project.quiz.extendedcalendarview.Event;
+import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.extendedcalendarview.ExtendedCalendarView;
-
-import java.util.Calendar;
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,7 +26,10 @@ public class FragmentHomeScreen extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    @Bind(R.id.name_field) TextViewRegularFont username;
     @Bind(R.id.calendar) ExtendedCalendarView calendarView;
+    private BroadcastReceiver broadcast;
+
     // TODO: Rename and change types and number of parameters
     public static FragmentHomeScreen newInstance(String param1, String param2) {
         FragmentHomeScreen fragment = new FragmentHomeScreen();
@@ -65,7 +60,9 @@ public class FragmentHomeScreen extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home_screen, container, false);
         ButterKnife.bind(this, v);
-
+        ParseUser user  = ParseUser.getCurrentUser();
+        if(user!=null)
+            setUsername(user.get("name").toString());
         return v;
     }
 
@@ -90,5 +87,7 @@ public class FragmentHomeScreen extends Fragment {
         super.onDetach();
     }
 
-
+    public void setUsername(String name) {
+        username.setText("Welcome " + name);
+    }
 }

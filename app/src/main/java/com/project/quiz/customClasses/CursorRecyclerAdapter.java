@@ -1,4 +1,4 @@
-package com.project.quiz.customClasses;/*
+package com.project.quiz.customclasses;/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2014 Matthieu Harlé

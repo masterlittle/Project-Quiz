@@ -78,10 +78,13 @@ public class FragmentAddStudentRecords extends Fragment {
                     student.put(StudentRecords.STUDENT_NAME, nameEditLayout.getEditText().getText().toString());
                     student.put(StudentRecords.STUDENT_YEAR, yearEditLayout.getEditText().getText().toString());
                     student.put(StudentRecords.STUDENT_ID, randomId);
+                    student.put(StudentRecords.STUDENT_SCORE, score);
                     student.put(StudentRecords.STUDENT_SELECTED, 0);
-                    ParseACL acl = new ParseACL();
-                    acl.setRoleWriteAccess("Administrator",true);
-                    student.setACL(acl);
+                    ParseACL postACL = new ParseACL();
+                    postACL.setPublicWriteAccess(false);
+                    postACL.setPublicReadAccess(true);
+                    postACL.setRoleWriteAccess(CommonLibs.Roles.ROLE_MODERATOR, true);
+                    student.setACL(postACL);
                     student.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {

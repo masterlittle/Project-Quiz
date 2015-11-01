@@ -7,7 +7,7 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/tool_bar"/>
-    <com.project.quiz.customClasses.SlidingTabLayout
+    <com.project.quiz.customviews.SlidingTabLayout
         android:layout_below="@+id/toolbar"
         android:background="@color/colorPrimaryLighter"
         android:id="@+id/sliding_tabs"

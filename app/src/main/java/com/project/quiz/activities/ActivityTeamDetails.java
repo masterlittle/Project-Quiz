@@ -55,7 +55,7 @@ public class ActivityTeamDetails extends AppCompatActivity {
             value.put(StorePointsTable.CHANGED_SCORE, 0);
             values[counter++] = value;
         }
-        getContentResolver().bulkInsert(DataContentProvider.CONTENT_BULK_INSERT_URI, values);
+        getContentResolver().bulkInsert(DataContentProvider.CONTENT_BULK_INSERT_TEAMS_URI, values);
     }
 
     private void emptyDatabase(){

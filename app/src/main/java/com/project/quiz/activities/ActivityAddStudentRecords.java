@@ -7,6 +7,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,8 +22,8 @@ import com.parse.ParseQuery;
 import com.project.quiz.R;
 import com.project.quiz.adapters.TabPagerAdapter;
 import com.project.quiz.contentprovider.DataContentProvider;
-import com.project.quiz.customClasses.CustomDialogTextClass;
-import com.project.quiz.customClasses.SlidingTabLayout;
+import com.project.quiz.customviews.CustomDialogTextClass;
+import com.project.quiz.customviews.SlidingTabLayout;
 import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.database.StudentRecords;
 import com.project.quiz.fragments.FragmentLoading;
@@ -50,13 +51,15 @@ public class ActivityAddStudentRecords extends AuthActivity implements ChangeFra
     @Bind(R.id.authenticateText)
     TextViewRegularFont authenticateText;
 
+    private static final String[] roles= {CommonLibs.Roles.ROLE_ADMINISTRATOR};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student_records);
         ButterKnife.bind(this);
         context = this;
-        checkRole(CommonLibs.Roles.ROLE_NORMAL, this);
+        checkRole(roles, this);
         toolbar.setTitle("Student Section");
         setSupportActionBar(toolbar);
 //        loadFragment(CommonLibs.FragmentId.ID_FRAGMENT_LOADING, null);
@@ -82,8 +85,9 @@ public class ActivityAddStudentRecords extends AuthActivity implements ChangeFra
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == LOGIN_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                checkRole(CommonLibs.Roles.ROLE_NORMAL, this);
+                checkRole(roles, this);
             } else if (resultCode == RESULT_CANCELED) {
+                finish();
             }
         }
     }
@@ -136,6 +140,9 @@ public class ActivityAddStudentRecords extends AuthActivity implements ChangeFra
                         deleteEvent(object);
                     }
                 }
+                else {
+                    Log.e("Failure","Student not removed");
+                }
 
             }
 
@@ -156,13 +163,13 @@ public class ActivityAddStudentRecords extends AuthActivity implements ChangeFra
         progress.setVisibility(View.GONE);
         authenticateText.setVisibility(View.GONE);
 
-        String[] tabs = new String[]{"Add student", "Edit students"};
+        String[] tabs = new String[]{"Add student\n", "Edit students\n", "Delete events\n", "Export Excel file\n"};
         viewPager = (ViewPager) findViewById(R.id.pager);
         mAdapter = new TabPagerAdapter(getSupportFragmentManager(), tabs, tabs.length);
 
         viewPager.setAdapter(mAdapter);
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setDistributeEvenly(false);
         slidingTabLayout.setViewPager(viewPager);
 
         slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {

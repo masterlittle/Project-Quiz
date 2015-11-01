@@ -22,6 +22,7 @@
         <com.project.quiz.customviews.IconTextView
             android:id="@+id/eventDelete"
             android:paddingRight="20dp"
+            android:background="@drawable/button_add_event"
             android:textSize="@dimen/font_size_xlarge"
             android:textColor="@color/colorAccent"
             android:layout_weight="1"
@@ -31,7 +32,7 @@
             android:layout_height="40dp" />
         <com.project.quiz.customviews.TextViewRegularFont
             android:visibility="gone"
-            android:background="@color/colorBackground"
+            android:background="@drawable/button_add_event"
             android:id="@+id/eventAdd"
             android:textSize="@dimen/font_size_large"
             android:textColor="@color/colorAccent"

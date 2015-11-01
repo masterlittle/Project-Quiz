@@ -6,22 +6,29 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 
 import com.project.quiz.R;
 import com.project.quiz.adapters.EventsTabPagerAdapter;
-import com.project.quiz.adapters.TabPagerAdapter;
-import com.project.quiz.customClasses.SlidingTabLayout;
+import com.project.quiz.customclasses.SyncData;
+import com.project.quiz.customviews.SlidingTabLayout;
+import com.project.quiz.interfaces.AuthenticateUserInterface;
 import com.project.quiz.interfaces.ChangeFragment;
+import com.project.quiz.utils.CommonLibs;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActivityEvents extends AppCompatActivity implements ChangeFragment {
+public class ActivityEvents extends AuthActivity implements ChangeFragment, Animation.AnimationListener {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    private MenuItem item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +40,7 @@ public class ActivityEvents extends AppCompatActivity implements ChangeFragment 
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String[] tabs = new String[]{"Your Events\n","Add Events\n", "Upcoming Events\n"};
+        String[] tabs = new String[]{"Your Events\n","Add Events\n", "All Events\n"};
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         PagerAdapter mAdapter = new EventsTabPagerAdapter(getSupportFragmentManager(), tabs, tabs.length);
@@ -94,12 +101,43 @@ public class ActivityEvents extends AppCompatActivity implements ChangeFragment 
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
+        if(id == R.id.sync){
+            syncAnimation(item);
+            new SyncData().sync(getApplicationContext(), this);
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void syncAnimation(final MenuItem item) {
+        this.item = item;
+        LayoutInflater inflater = (LayoutInflater) getApplication()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ImageView iv = (ImageView) inflater.inflate(R.layout.image_sync_animation,
+                null);
+        item.setActionView(iv);
+        final Animation rotation = AnimationUtils.loadAnimation(getApplication(),
+                R.anim.rotate_icon);
+        iv.startAnimation(rotation);
+        rotation.setAnimationListener(this);
+    }
     @Override
     public void loadFragment(int id, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+        item.setActionView(null);
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
 
     }
 }

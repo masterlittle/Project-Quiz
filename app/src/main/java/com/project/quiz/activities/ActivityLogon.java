@@ -1,12 +1,17 @@
 package com.project.quiz.activities;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.project.quiz.R;
 import com.project.quiz.customviews.EditTextRegularFont;
@@ -24,6 +29,7 @@ public class ActivityLogon extends AppCompatActivity implements ChangeFragment, 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setAnimations();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logon);
         ButterKnife.bind(this);
@@ -59,7 +65,7 @@ public class ActivityLogon extends AppCompatActivity implements ChangeFragment, 
     public void loadFragment(int id, Bundle bundle) {
         if(id == CommonLibs.FragmentId.ID_FRAGMENT_SIGN_IN){
             FragmentSignIn fragmentSignIn = new FragmentSignIn();
-            getFragmentManager().beginTransaction().replace(R.id.container,fragmentSignIn,"FragmentSignIn").addToBackStack("FragmentSignIn").commit();
+            getFragmentManager().beginTransaction().replace(R.id.container,fragmentSignIn,"FragmentSignIn").commit();
         }
         if(id == CommonLibs.FragmentId.ID_FRAGMENT_SIGN_UP){
             FragmentSignUp fragmentSignUp = new FragmentSignUp();
@@ -69,12 +75,41 @@ public class ActivityLogon extends AppCompatActivity implements ChangeFragment, 
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("com.project.quiz.LOGIN_SUCCESS");
+        sendBroadcast(broadcastIntent);
+        finishAfterTransition();
+    }
 
+    private void setAnimations() {
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setAllowEnterTransitionOverlap(true);
+        getWindow().setAllowReturnTransitionOverlap(true);
+        getWindow().setTransitionBackgroundFadeDuration(700);
+        getWindow().setEnterTransition(new Fade());
+        getWindow().setExitTransition(new Fade());
     }
 
     @Override
     public void onSignInFragmentInteraction(Uri uri) {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("com.project.quiz.LOGIN_SUCCESS");
+        sendBroadcast(broadcastIntent);
+        finish();
+    }
 
+    @Override
+    public void onBackPressed() {
+        if( getFragmentManager().getBackStackEntryCount() >0){
+            getFragmentManager().popBackStackImmediate();
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override

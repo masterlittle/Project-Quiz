@@ -1,4 +1,4 @@
-package com.project.quiz.customClasses;
+package com.project.quiz.customviews;
 
 import android.R;
 import android.content.Context;

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.project.quiz.R;
+import com.project.quiz.adapters.DeleteEventsAdapter;
 import com.project.quiz.adapters.ListAllEventsAdapter;
 import com.project.quiz.customviews.IconTextView;
 import com.project.quiz.customviews.TextViewRegularFont;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
  * Use the {@link FragmentAllEvents#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentAllEvents extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class FragmentDeleteEvents extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,7 +36,7 @@ public class FragmentAllEvents extends Fragment implements LoaderManager.LoaderC
 
     private String mParam1;
     private String mParam2;
-    private ListAllEventsAdapter adapter;
+    private DeleteEventsAdapter adapter;
 
     @Bind(android.R.id.list)
     ListView allEventsList;
@@ -53,7 +54,7 @@ public class FragmentAllEvents extends Fragment implements LoaderManager.LoaderC
         return fragment;
     }
 
-    public FragmentAllEvents() {
+    public FragmentDeleteEvents() {
         // Required empty public constructor
     }
 
@@ -73,7 +74,7 @@ public class FragmentAllEvents extends Fragment implements LoaderManager.LoaderC
         View v = inflater.inflate(R.layout.fragment_all_events, container, false);
         ButterKnife.bind(this, v);
 
-        adapter = new ListAllEventsAdapter(getContext(), null, getActivity(), R.layout.custom_upcoming_events);
+        adapter = new DeleteEventsAdapter(getContext(), null, getActivity(), R.layout.custom_upcoming_events);
         allEventsList.setAdapter(adapter);
 
         getLoaderManager().initLoader(1, null, this);

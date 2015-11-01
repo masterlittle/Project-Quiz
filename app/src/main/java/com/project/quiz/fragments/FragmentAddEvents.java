@@ -30,7 +30,9 @@ import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
 import com.project.quiz.R;
 import com.project.quiz.adapters.PlaceAutocompleteAdapter;
 import com.project.quiz.customviews.EditTextRegularFont;
@@ -62,11 +64,11 @@ public class FragmentAddEvents extends Fragment implements GoogleApiClient.OnCon
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private String placeId;
+    private String placeId = "-42";
     private GoogleApiClient mGoogleApiClient;
     private PlaceAutocompleteAdapter mAdapter;
     private static final LatLngBounds BOUNDS_GREATER_SYDNEY = new LatLngBounds(
-            new LatLng(-34.041458, 150.790100), new LatLng(-33.682247, 151.383362));
+            new LatLng(28.613939, 77.209021), new LatLng(29.613939, 78.209021));
 
     @Bind(R.id.timePicker)
     TimePicker timePicker;
@@ -103,6 +105,7 @@ public class FragmentAddEvents extends Fragment implements GoogleApiClient.OnCon
             parseEvent.put(CalendarProvider.LOCATION, eventLocation.getText().toString().trim());
             parseEvent.put(CalendarProvider.LOCATION_ID, placeId);
             parseEvent.put(CalendarProvider.EVENT, eventTitle.getText().toString().trim());
+            parseEvent.put(CalendarProvider.COLOR, Event.COLOR_RED);
             /**
              * Store event on local database
              */
@@ -136,7 +139,17 @@ public class FragmentAddEvents extends Fragment implements GoogleApiClient.OnCon
 
             getActivity().getContentResolver().insert(CalendarProvider.CONTENT_URI, values);
 
-            parseEvent.saveEventually();
+            parseEvent.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e == null) {
+                        Log.e("Success", "Event saved");
+                    }
+                    else{
+                        Log.e("Failure", "Event not saved");
+                    }
+                }
+            });
         }
     }
 

@@ -14,6 +14,7 @@ import android.support.v7.app.NotificationCompat;
 import android.text.TextUtils;
 
 import com.project.quiz.R;
+import com.project.quiz.activities.ActivityHomeScreen;
 
 import java.util.List;
 
@@ -43,12 +44,14 @@ public class NotificationUtils {
             int icon = R.mipmap.ic_launcher;
 
             int mNotificationId = Api.AppConfig.NOTIFICATION_ID;
+        Intent backIntent = new Intent(mContext, ActivityHomeScreen.class);
+        backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 
             PendingIntent resultPendingIntent =
-                    PendingIntent.getActivity(
+                    PendingIntent.getActivities(
                             mContext,
                             0,
-                            intent,
+                            new Intent[]{backIntent, intent},
                             PendingIntent.FLAG_CANCEL_CURRENT
                     );
 

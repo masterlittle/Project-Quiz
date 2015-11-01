@@ -1,0 +1,78 @@
+<RelativeLayout
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.project.quiz.fragments.FragmentExportAsCsv">
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:layout_marginTop="50dp"
+        android:id="@+id/success_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:text=""
+        android:textSize="@dimen/font_size_xxlarge"
+        android:textColor="@color/colorPrimaryDark" />
+<com.project.quiz.customviews.TextViewBoldFont
+    android:layout_below="@+id/success_text"
+    android:layout_margin="16dp"
+    android:layout_marginBottom="20dp"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:id="@+id/filename_header"
+    android:textColor="@color/colorTextDark"
+    android:text="Export files to Excel"
+    android:textSize="@dimen/font_size_large"
+    android:layout_height="wrap_content" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_margin="16dp"
+        android:layout_below="@+id/filename_header"
+        android:id="@+id/filename_layout"
+        android:layout_width="match_parent"
+        android:textColorHint="@color/colorPrimary"
+        android:layout_height="wrap_content" >
+        <com.project.quiz.customviews.EditTextRegularFont
+            android:hint="Enter filename to save"
+            android:textColor="@color/colorText"
+            android:id="@+id/filename"
+            android:layout_width="match_parent"
+            android:inputType="textCapSentences"
+            android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/button_export"
+        android:layout_below="@+id/filename_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/button_yes_drawable"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:text="Export"
+        android:textColor="@color/colorBackground"
+        android:textSize="@dimen/font_size_xlarge" />
+
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/black"
+        android:paddingBottom="@dimen/padding_custom_10dp"
+        android:paddingTop="@dimen/padding_custom_10dp"
+        android:text="Delete the Excel file"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/font_size_xlarge" />
+
+</RelativeLayout>

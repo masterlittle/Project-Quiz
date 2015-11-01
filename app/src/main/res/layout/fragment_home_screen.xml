@@ -8,10 +8,11 @@
     android:layout_height="match_parent"
     tools:context="com.project.quiz.fragments.FragmentHomeScreen">
 
-    <com.project.quiz.customviews.TextViewBoldFont
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:id="@+id/name_field"
         android:textColor="@color/colorText"
         android:textSize="@dimen/font_size_xxlarge"
-        android:text="HOLA!"
+        android:text="Welcome"
         android:gravity="center"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"

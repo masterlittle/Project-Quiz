@@ -5,7 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.project.quiz.fragments.FragmentAddStudentRecords;
+import com.project.quiz.fragments.FragmentAllEvents;
+import com.project.quiz.fragments.FragmentDeleteEvents;
 import com.project.quiz.fragments.FragmentEditStudentDetails;
+import com.project.quiz.fragments.FragmentExportAsCsv;
 
 /**
  * Created by Shitij on 27/09/15.
@@ -27,6 +30,10 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
                 return new FragmentAddStudentRecords();
             case 1:
                 return new FragmentEditStudentDetails();
+            case 2:
+                return new FragmentDeleteEvents();
+            case 3:
+                return new FragmentExportAsCsv();
         }
 
         return null;
