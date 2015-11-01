@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.quiz.R;
 import com.project.quiz.adapters.CustomCheckboxCursorAdapter;
@@ -54,12 +55,16 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
     @OnClick(R.id.floating_action_button)
     public void onFloatingButtonClick(){
         int count =0;
-        for(String key : selectedStudentList){
-            if(selectedStudents.containsKey(key) && selectedStudents.get(key) == 1){
-                count++;
+            for (String key : selectedStudentList) {
+                if (selectedStudents.containsKey(key) && selectedStudents.get(key) == 1) {
+                    count++;
+                }
             }
+        if(count != selectedStudentList.size())
+            mListener.doWork(count);
+        else{
+            Toast.makeText(getActivity(), "The Quizmaster must not be selected", Toast.LENGTH_LONG).show();
         }
-        mListener.doWork(count);
     }
 
     @OnItemClick(android.R.id.list)
@@ -110,7 +115,7 @@ public class FragmentSelectStudents extends BaseFragment implements AbsListView.
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        Toast.makeText(getActivity(), "Do not select the quizmaster", Toast.LENGTH_LONG).show();
         String[] from = new String[]{StudentRecords.COLUMN_ID, StudentRecords.STUDENT_NAME, StudentRecords.STUDENT_SELECTED, StudentRecords.STUDENT_ID};
         int[] to = new int[]{R.id.student_name_position, R.id.student_name_field, R.id.student_select_checkbox, R.id.student_id_field};
         // TODO: Change Adapter to display your content
