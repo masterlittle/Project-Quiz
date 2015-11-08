@@ -1,36 +1,26 @@
 <LinearLayout
+    android:padding="40dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.project.quiz.fragments.FragmentHomeScreen">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:textSize="24sp"
-        android:textColor="@color/colorTextDark"
+    <com.project.quiz.customviews.TextViewRegularFont
+        android:id="@+id/name_field"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/font_size_xxlarge"
+        android:text="Welcome"
         android:gravity="center"
-        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/addStudent" />
-    <TextView
-        android:textSize="24sp"
-        android:textColor="@color/colorTextDark"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/displatScores" />
-    <TextView
-        android:textSize="24sp"
-        android:textColor="@color/colorTextDark"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/createTeams" />
+        android:layout_height="wrap_content" />
+
+    <com.project.quiz.extendedcalendarview.ExtendedCalendarView
+        android:id="@+id/calendar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
 
 </LinearLayout>

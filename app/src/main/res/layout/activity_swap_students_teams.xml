@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.project.quiz.activities.ActivitySwapStudentsTeams">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.project.quiz.customviews.TextViewBoldFont
+            android:padding="@dimen/padding_custom_10dp"
+            android:textSize="@dimen/font_size_large"
+            android:gravity="center"
+            android:textColor="@color/colorTextDark"
+            android:text="Team"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <NumberPicker
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/numberPicker"
+            android:background="@color/colorPrimaryLight"
+            android:solidColor="@color/DARKGREYBACK"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.project.quiz.customviews.TextViewBoldFont
+                android:padding="@dimen/padding_custom_10dp"
+                android:layout_weight="1"
+                android:textSize="@dimen/font_size_medium"
+                android:gravity="left"
+                android:textColor="@color/colorTextDark"
+                android:text="Students in Team"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <View
+                android:background="@color/colorPrimaryLight"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+            <com.project.quiz.customviews.TextViewBoldFont
+                android:padding="@dimen/padding_custom_10dp"
+                android:layout_weight="1"
+                android:textSize="@dimen/font_size_medium"
+                android:gravity="left"
+                android:textColor="@color/colorTextDark"
+                android:text="Unselected Students"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/padding_custom_10dp"
+            android:layout_marginBottom="@dimen/padding_custom_10dp"
+            android:background="@color/colorPrimaryLight"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ListView
+            android:divider="@null"
+            android:layout_weight="1"
+            android:id="@+id/list_selected"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+            <View
+                android:background="@color/colorPrimaryLight"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+        <ListView
+            android:divider="@null"
+            android:id="@+id/list_unselected"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

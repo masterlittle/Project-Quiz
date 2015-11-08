@@ -12,24 +12,27 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.project.quiz.R;
+import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.database.StudentRecords;
-import com.project.quiz.fragments.FragmentSelectStudents;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by Shitij on 27/09/15.
+ * Created by Shitij on 11/10/15.
  */
-public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
+public class CustomDisplaySimpleCursorAdapter extends SimpleCursorAdapter {
+
     public Context context;
     private int layout;
 
-    public CustomSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
+    public CustomDisplaySimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
         this.context = context;
         this.layout = layout;
-
     }
 
     @Override
@@ -40,25 +43,11 @@ public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
             holder = new ViewHolder(view);
             view.setTag(holder);
         }
+
         holder = (ViewHolder)view.getTag();
-        String student_id = cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_ID));
-        FragmentSelectStudents.selectedStudentList.add(student_id);
-        holder.studentId.setText(student_id);
         holder.studentName.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_NAME)));
-        holder.studentPosition.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.COLUMN_ID)));
-        selected = cursor.getInt(cursor.getColumnIndex(StudentRecords.STUDENT_SELECTED)) == 1;
-        holder.studentCheckbox.setSelected(selected);
-        final ViewHolder finalHolder = holder;
-        holder.studentCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                int checked = 0;
-                if(finalHolder.studentCheckbox.isChecked()){
-                    checked =1;
-                }
-                FragmentSelectStudents.selectedStudents.put(finalHolder.studentId.getText().toString(), checked);
-            }
-        });
+        holder.studentPosition.setText(String.valueOf(cursor.getPosition()+1));
+        holder.studentScore.setText(cursor.getString(cursor.getColumnIndex(StudentRecords.STUDENT_SCORE)));
     }
 
     @Override
@@ -71,16 +60,13 @@ public class CustomSimpleCursorAdapter extends SimpleCursorAdapter {
 
     public static class ViewHolder {
         @Bind(R.id.student_name_position)
-        TextView studentPosition;
+        TextViewRegularFont studentPosition;
         @Bind(R.id.student_name_field)
-        TextView studentName;
-        @Bind(R.id.student_id_field) TextView  studentId;
-        @Bind(R.id.student_select_checkbox)
-        CheckBox studentCheckbox;
+        TextViewRegularFont studentName;
+        @Bind(R.id.student_score_field) TextViewRegularFont  studentScore;
 
         public ViewHolder(View v) {
             ButterKnife.bind(this, v);
         }
     }
 }
-

@@ -52,10 +52,24 @@ public class CommonLibs {
         public static int ID_FRAGMENT_SELECT_TEAMS=3;
         public static int ID_FRAGMENT_HOME_SCREEN=4;
         public static int ID_FRAGMENT_DISTRIBUTE_STUDENTS=5;
+        public static int ID_FRAGMENT_DISPLAY_TEAM_SCORES=6;
+        public static int ID_FRAGMENT_FINISH_QUIZ=7;
+        public static int ID_FRAGMENT_ALL_EVENTS=8;
+        public static int ID_FRAGMENT_SIGN_IN=9;
+        public static int ID_FRAGMENT_SIGN_UP=10;
+        public static int ID_FRAGMENT_LOADING=11;
     }
 
     public static class SharedPrefsKeys{
-        public static String TEAM_NUMBER;
+        public static String TEAM_NUMBER = "team_number";
     }
+
+    public static class Roles{
+        public static String ROLE_ADMINISTRATOR = "Administrator";
+        public static String ROLE_MODERATOR = "Moderator";
+        public static String ROLE_NORMAL = "Normal";
+    }
+
+
 
 }

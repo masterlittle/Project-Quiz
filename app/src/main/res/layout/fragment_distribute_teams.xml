@@ -8,6 +8,7 @@
     android:layout_height="wrap_content"
     tools:context="com.project.quiz.fragments.FragmentDistributeTeams">
 
+
     <com.project.quiz.customviews.TextViewRegularFont
         android:paddingLeft="@dimen/padding_custom_10dp"
         android:layout_width="0dp"

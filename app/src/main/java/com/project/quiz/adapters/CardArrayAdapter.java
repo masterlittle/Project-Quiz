@@ -7,12 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.project.quiz.activities.ActivityUpdateScore;
 import com.project.quiz.R;
-import com.project.quiz.customClasses.CardScore;
-import com.project.quiz.customClasses.CursorRecyclerAdapter;
+import com.project.quiz.customclasses.CardScore;
+import com.project.quiz.customclasses.CursorRecyclerAdapter;
+import com.project.quiz.customviews.TextViewBoldFont;
+import com.project.quiz.customviews.TextViewRegularFont;
 import com.project.quiz.database.StorePointsTable;
 import com.project.quiz.interfaces.UpdateScoreCallback;
 
@@ -111,9 +112,9 @@ public class CardArrayAdapter extends CursorRecyclerAdapter {
 
     static class CardViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.card_view) LinearLayout cardLayout;
-        @Bind(R.id.team_number_text)TextView teamNum;
-        @Bind(R.id.current_score_number)TextView currentScore;
-        @Bind(R.id.inc_score_number)TextView increaseScore;
+        @Bind(R.id.team_number_text)TextViewRegularFont teamNum;
+        @Bind(R.id.current_score_number)TextViewBoldFont currentScore;
+        @Bind(R.id.inc_score_number)TextViewRegularFont increaseScore;
 
         public CardViewHolder(View rowView) {
             super(rowView);

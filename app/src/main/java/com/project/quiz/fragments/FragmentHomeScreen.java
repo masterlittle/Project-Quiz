@@ -1,13 +1,20 @@
 package com.project.quiz.fragments;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.ParseUser;
 import com.project.quiz.R;
+import com.project.quiz.customviews.TextViewRegularFont;
+import com.project.quiz.extendedcalendarview.ExtendedCalendarView;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class FragmentHomeScreen extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -19,15 +26,10 @@ public class FragmentHomeScreen extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    @Bind(R.id.name_field) TextViewRegularFont username;
+    @Bind(R.id.calendar) ExtendedCalendarView calendarView;
+    private BroadcastReceiver broadcast;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentHomeScreen.
-     */
     // TODO: Rename and change types and number of parameters
     public static FragmentHomeScreen newInstance(String param1, String param2) {
         FragmentHomeScreen fragment = new FragmentHomeScreen();
@@ -49,13 +51,19 @@ public class FragmentHomeScreen extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_screen, container, false);
+        View v = inflater.inflate(R.layout.fragment_home_screen, container, false);
+        ButterKnife.bind(this, v);
+        ParseUser user  = ParseUser.getCurrentUser();
+        if(user!=null)
+            setUsername(user.get("name").toString());
+        return v;
     }
 
     @Override
@@ -69,9 +77,17 @@ public class FragmentHomeScreen extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        ButterKnife.unbind(this);
+        super.onDestroyView();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
     }
 
-
+    public void setUsername(String name) {
+        username.setText("Welcome " + name);
+    }
 }

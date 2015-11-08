@@ -1,56 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/GREYBACK"
+    android:orientation="vertical">
+
     <com.project.quiz.customviews.TextViewBoldFont
-        android:text="Enter number of seeds/teams."
-        android:padding="@dimen/abc_action_bar_content_inset_material"
-        android:textSize="@dimen/font_size_xxlarge"
-        android:gravity="center"
         android:id="@+id/dialog_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-    <com.project.quiz.customviews.EditTextRegularFont
-        android:text="0"
+        android:gravity="center"
         android:padding="@dimen/abc_action_bar_content_inset_material"
-        android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textSize="@dimen/font_size_large"
-        android:id="@+id/dialog_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"/>
+        android:text="Enter number of seeds/teams."
+        android:textColor="@color/colorTextDark"
+        android:textSize="@dimen/font_size_xxlarge" />
+
     <LinearLayout
-        android:layout_margin="@dimen/abc_action_bar_content_inset_material"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.project.quiz.customviews.TextViewRegularFont
-            android:layout_margin="6dp"
-            android:textColor="@color/colorPrimary"
+
+        <NumberPicker
+            android:id="@+id/numberPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@color/colorPrimaryLight"
-            android:id="@+id/button_no"
-            android:paddingBottom="@dimen/padding_custom_10dp"
             android:gravity="center"
-            android:paddingTop="@dimen/padding_custom_10dp"
-            android:textSize="18dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/button_cancel"/>
-        <com.project.quiz.customviews.TextViewRegularFont
-            android:layout_margin="6dp"
-            android:background="@color/colorPrimary"
-            android:id="@+id/button_next"
+            android:inputType="numberDecimal"
+            android:solidColor="@color/DARKGREYBACK"
             android:textSize="@dimen/font_size_large"
-            android:paddingBottom="@dimen/padding_custom_10dp"
-            android:paddingTop="@dimen/padding_custom_10dp"
-            android:gravity="center"
-            android:textColor="@color/colorPrimaryLight"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/abc_action_bar_content_inset_material">
+
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:id="@+id/button_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="6dp"
             android:layout_weight="1"
-            android:text="@string/button_next"/>
+            android:background="@color/LIGHTGREYBACK"
+            android:gravity="center"
+            android:paddingBottom="@dimen/padding_custom_10dp"
+            android:paddingTop="@dimen/padding_custom_10dp"
+            android:text="@string/button_cancel"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp" />
+
+        <com.project.quiz.customviews.TextViewRegularFont
+            android:id="@+id/button_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingBottom="@dimen/padding_custom_10dp"
+            android:paddingTop="@dimen/padding_custom_10dp"
+            android:text="@string/button_next"
+            android:textColor="@color/colorBackground"
+            android:textSize="@dimen/font_size_large" />
     </LinearLayout>
 </LinearLayout>

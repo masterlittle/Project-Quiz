@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/container"
     android:layout_height="match_parent"
-    tools:context="com.project.quiz.fragments.FragmentDisplayScore">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.project.quiz.fragments.FragmentSelectStudents">
 
-    <ListView android:id="@android:id/list" android:layout_width="match_parent"
+    <ListView
+        android:background="@color/colorBackgroundCard"
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/card_background"
+        app:layout_anchor="@android:id/list"
+        app:layout_anchorGravity="bottom|left|end">
+    </android.support.design.widget.FloatingActionButton>
 
-    <TextView android:id="@android:id/empty" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:gravity="center" />
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

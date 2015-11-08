@@ -9,10 +9,11 @@
     <string name="enterName">Enter Name</string>
     <string name="enterYear">Enter Year</string>
     <string name="studentDetails">Enter Student Details</string>
-    <string name="addStudent">Add Student</string>
+    <string name="addStudent"> Student Section</string>
     <string name="title_activity_activity_select_teams">ActivitySelectTeams</string>
 
 <!-- TODO: Remove or change this placeholder text -->
+    <string name="place_details">&lt;b&gt;%1$s&lt;/b&gt;&lt;br/&gt;&lt;i&gt;Place Id: %2$s&lt;/i&gt;&lt;br/&gt;Address: %3$s&lt;br/&gt;Phone: %4$s&lt;br/&gt;Website: %5$s</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_activity_home_screen">ActivityHomeScreen</string>
     <string name="highGuys">High Guys</string>
@@ -24,4 +25,30 @@
     <string name="button_yes">Yes</string>
     <string name="button_next">Next</string>
     <string name="Team">Team</string>
+    <string name="displayScores">Display Scores</string>
+    <string name="finish">Finish</string>
+    <string name="enterScore">Enter Score</string>
+    <string name="displayLeagueStandings">Display League Standings</string>
+    <string name="message1">Hola!! \n\nYou can edit the scores and add students in Student section.</string>
+    <string name="message2">Use the Navigation menu to find your way around the app.</string>
+    <string name="message3"> Create a team and keep Live scores!</string>
+    <string name="instructions">Click on a team and adjust the scores. You can change score of multiple teams in one go. Press the action button to commit all changes. Click Finish on the menu button to finish and commit scores to league. Do NOT press back in between.</string>
+    <string name="title_activity_activity_swap_students_teams">ActivitySwapStudentsTeams</string>
+
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="sunday">SUN</string>
+    <string name="title_activity_activity_events">ActivityEvents</string>
+    <string name="events">Upcoming Events</string>
+    <string name="reset">Reset Scores</string>
+    <string name="share">Share</string>
+    <string name="send_to">Send Standings</string>
+    <string name="title_activity_activity_logon">ActivityLogon</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="title_activity_auth">AuthActivity</string>
 </resources>

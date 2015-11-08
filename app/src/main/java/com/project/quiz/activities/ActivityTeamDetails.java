@@ -2,9 +2,11 @@ package com.project.quiz.activities;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -19,19 +21,25 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ActivityTeamDetails extends AppCompatActivity {
-    @Bind(R.id.edit_team_num)
-    EditText editTeamNumber;
-    @Bind(R.id.team_num_layout)
-    TextInputLayout teamNumberLayout;
+    @Bind(R.id.edit_quiz_tag) EditText editQuizTag;
+    @Bind(R.id.quiz_tag_layout) TextInputLayout quizTagLayout;
+    @Bind(R.id.edit_quizmaster) EditText editQuizMaster;
+    @Bind(R.id.quizmaster_layout) TextInputLayout quizMasterLayout;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+
     @OnClick(R.id.button_next)
     public void onClick(){
         emptyDatabase();
-        if(editTeamNumber.getText().length() <=0){
-            teamNumberLayout.setError("Please enter the team number");
-        }else {
-            insertTeams(editTeamNumber.getText().toString());
+        if(editQuizTag.getText().length() <=0){
+            quizTagLayout.setError("Please enter the quiz tag");
+        }
+        else if(editQuizMaster.getText().length() <= 0){
+            quizMasterLayout.setError("Please enter the name of the Quizmaster");
+        } else{
+            SharedPreferences preferences = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+            insertTeams(preferences.getString(CommonLibs.SharedPrefsKeys.TEAM_NUMBER, "0"));
             Intent intent = new Intent(this, ActivityUpdateScore.class);
-            intent.putExtra(CommonLibs.TeamDetails.TEAM_NUMBER, editTeamNumber.getText().toString());
+//            intent.putExtra(CommonLibs.TeamDetails.TEAM_NUMBER, editTeamNumber.getText().toString());
             startActivity(intent);
             finish();
         }
@@ -47,7 +55,7 @@ public class ActivityTeamDetails extends AppCompatActivity {
             value.put(StorePointsTable.CHANGED_SCORE, 0);
             values[counter++] = value;
         }
-        getContentResolver().bulkInsert(DataContentProvider.CONTENT_BULK_INSERT_URI, values);
+        getContentResolver().bulkInsert(DataContentProvider.CONTENT_BULK_INSERT_TEAMS_URI, values);
     }
 
     private void emptyDatabase(){
@@ -59,6 +67,8 @@ public class ActivityTeamDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_details);
         ButterKnife.bind(this);
+        toolbar.setTitle("Home");
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -70,13 +80,11 @@ public class ActivityTeamDetails extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.swapStudents) {
+            Intent intent = new Intent(this, ActivitySwapStudentsTeams.class);
+            startActivity(intent);
             return true;
         }
 
